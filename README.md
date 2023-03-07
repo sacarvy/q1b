@@ -1,4 +1,4 @@
-##### Q1B - New Home for [sacarvy](github.com/sacarvy) 
+##### Q1B - New Home for [sacarvy](github.com/sacarvy)
 
 ## Why?
 
