@@ -1,47 +1,96 @@
-# Astro Starter Kit: Minimal
+##### Q1B - New Home for [sacarvy](github.com/sacarvy) 
 
-```
-npm create astro@latest -- --template minimal
-```
+## Why?
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+##### Since, I learned from YouTube and Experimenting, never new what are the professtional ways of real tech, and it's a learning process started by a teen for fun which included experiments and creating lots of projects many helped me, got from where now, it's seems more clear that, somewhere I wanted to start a more clean history of repos and projects on which I want to continue working and learn.  
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+In this journey, gained a lot of fundamental learnings, as one among them,
 
-## 🚀 Project Structure
+### Better than nothing, Better than Perfect
 
-Inside of your Astro project, you'll see the following folders and files:
+- Clarify your goal, Simultaneously Learn and Incrementally improve rather than over thinking and laziness on it.
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+<!-- #### Although, Projects speaks more profoundly for a developer than he himself! -->
+<!-- a note taking app, building with modern stack  -->
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Recent Activites
+- ##### [AI Platform for Bhuman.ai]()
+  <details>
+    <summary style="font-size:10px;" >Built Using:</summary>
+     
+    ```
+  - web-framework `Solidjs`
+  - css-framework `Tailwindcss`
+  - programming language: `TypeScript`
+  - API-Layer `Axios`
+    ```
+  </details>
+  <details open>
+    <summary style="font-size:10px;" >Features:</summary>
+     
+    ```
+  - modern & Excellent UI Design
+  - Open Source
+  - Realtime Capabilities
+  - Best in-class performance
+    ```
+  </details>
+- ##### [Portfolio Website]()
+  <details>
+    <summary style="font-size:10px;" >Built Using:</summary>
+     
+    ```
+  - web-framework `Astro` using `Solidjs`
+  - css-framework `Tailwindcss`
+  - programming language: `TypeScript`
+    ```
+  </details>
+  <details>
+    <summary style="font-size:10px;" >Features:</summary>
+     
+    ```
+  - SEO Friendly
+  - Dark Mode
+  - Fully Static Site
+    ```
+  </details>
+  
+- ##### [Multi Page Note Taking APP]()
+  <details>
+    <summary style="font-size:10px;" >Built Using:</summary>
+     
+    ```
+  - web-framework `Vue` using `Nuxt`
+  - css-framework `Tailwindcss`
+  - programming language: `TypeScript`
+  - database `Cloudflare Workers KV`
+    ```
+  </details>
+  <details>
+    <summary style="font-size:10px;" >Features:</summary>
+     
+    ```
+  - modern & Excellent UI Design
+  - Open Source
+  - Realtime Capabilities
+  - Best in-class performance
+    ```
+  </details>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- ##### Waiting Spot for a Project
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Pinned Links
 
-## 🧞 Commands
+google's [docs guide philosophy](https://google.github.io/styleguide/docguide/philosophy.html)
 
-All commands are run from the root of the project, from a terminal:
+Robert Nystrom by [crafting interpreters](https://craftinginterpreters.com/contents.html) 
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+## Facts
+
+- Programming Language, used mostly in career until today is `TypeScript`
+- Programming Language, got most attracted to is `rust-lang` and `golang`
+- Programming Language, learned for seriously was `python` in 11th class.
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [portfolio](https://docs.astro.build) or jump to see my [resume](https://astro.build/chat).
