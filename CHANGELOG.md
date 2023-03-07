@@ -1,11 +1,6 @@
 ## [0.0.6](https://github.com/q1b/q1b/compare/v0.0.3...v0.0.6) (2023-03-07)
 
 
-
-## [0.0.4](https://github.com/q1b/q1b/compare/v0.0.3...v0.0.4) (2023-03-07)
-
-
-
 ## [0.0.3](https://github.com/q1b/q1b/compare/v0.0.2...v0.0.3) (2023-03-07)
 
 - Updated `README.md` in a pretty formated to showcase my skills

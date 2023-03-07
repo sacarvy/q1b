@@ -73,8 +73,25 @@ async function main() {
   updatePackage(targetVersion)
 
   // Build the package.
-  step('\nBuilding the package...')
+  step('\nBuilding the website...')
   await run('pnpm', ['build'])
+    
+  step('\nPreview the website...')
+    await run('pnpm', ['site:preview'])
+
+
+  const { yes: releaseOk } = await prompts({
+    type: 'confirm',
+    name: 'yes',
+    message: `Will it be okay to deploy your website?`
+  })
+
+    
+  if (releaseOk) {
+    // Deploying the website.
+    step('\nDeploying the website...')
+    await run('pnpm', ['site:deploy'])
+  }
 
   // Generate the changelog.
   step('\nGenerating the changelog...')
