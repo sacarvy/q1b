@@ -1,3 +1,7 @@
+## [0.0.6](https://github.com/q1b/q1b/compare/v0.0.3...v0.0.6) (2023-03-07)
+
+
+
 ## [0.0.4](https://github.com/q1b/q1b/compare/v0.0.3...v0.0.4) (2023-03-07)
 
 
