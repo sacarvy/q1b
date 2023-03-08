@@ -14,18 +14,19 @@
   },
   "dependencies": {
     "@astrojs/solid-js": "^2.1.0",
-    "solid-js": "^1.6.12",
-    "astro": "^2.0.18"
+    "astro": "^2.0.18",
+    "solid-js": "^1.6.12"
   },
   "devDependencies": {
+    "@q1b/preset-eslint": "*",
+    "@q1b/preset-ts": "*",
     "@q1b/ui": "*",
+    "@vite-pwa/astro": "^0.0.5",
     "conventional-changelog-cli": "^2.2.2",
     "execa": "^7.0.0",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
     "semver": "^7.3.8",
-    "wrangler": "^2.12.1",
-    "@q1b/preset-eslint": "*",
-    "@q1b/preset-ts": "*"
+    "wrangler": "^2.12.1"
   }
 }
