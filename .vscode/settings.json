@@ -2,5 +2,8 @@
   "editor.formatOnSave": true,
   "editor.trimAutoWhitespace": true,
   "editor.insertSpaces": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }
