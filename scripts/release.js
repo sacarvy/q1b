@@ -31,7 +31,7 @@ async function main() {
     type: 'select',
     name: 'release',
     message: 'Select release type',
-    choices: versions
+    choices: versions,
   })
 
   if (release === 3) {
@@ -40,7 +40,7 @@ async function main() {
         type: 'text',
         name: 'version',
         message: 'Input custom version',
-        initial: currentVersion
+        initial: currentVersion,
       })
     ).version
   } else {
@@ -55,13 +55,13 @@ async function main() {
     type: 'select',
     name: 'tag',
     message: 'Select tag type',
-    choices: tags
+    choices: tags,
   })
 
   const { yes: tagOk } = await prompts({
     type: 'confirm',
     name: 'yes',
-    message: `Releasing v${targetVersion} on ${tags[tag]}. Confirm?`
+    message: `Releasing v${targetVersion} on ${tags[tag]}. Confirm?`,
   })
 
   if (!tagOk) {
@@ -74,34 +74,32 @@ async function main() {
 
   // Build the package.
   step('\nBuilding the website...')
-  await run('pnpm', ['build'])
-    
-  step('\nPreview the website...')
-    await run('pnpm', ['site:preview'])
+  await run('npm', ['run', 'build'])
 
+  step('\nPreview the website...')
+  await run('npm', ['run', 'site:preview'])
 
   const { yes: releaseOk } = await prompts({
     type: 'confirm',
     name: 'yes',
-    message: `Will it be okay to deploy your website?`
+    message: `Will it be okay to deploy your website?`,
   })
 
-    
   if (releaseOk) {
     // Deploying the website.
     step('\nDeploying the website...')
-    await run('pnpm', ['site:deploy'])
+    await run('npm', ['run', 'site:deploy'])
   }
 
   // Generate the changelog.
   step('\nGenerating the changelog...')
-  await run('pnpm', ['changelog'])
-//   await run('pnpm', ['prettier', '--write', 'CHANGELOG.md'])
+  await run('npm', ['run', 'changelog'])
+  //   await run('npm', ['prettier', '--write', 'CHANGELOG.md'])
 
   const { yes: changelogOk } = await prompts({
     type: 'confirm',
     name: 'yes',
-    message: `Changelog generated. Does it look good?`
+    message: `Changelog generated. Does it look good?`,
   })
 
   if (!changelogOk) {
@@ -114,15 +112,15 @@ async function main() {
   await run('git', ['commit', '-m', `release: v${targetVersion}`])
   await run('git', ['tag', `v${targetVersion}`])
 
-//   // Publish the package.
-//   step('\nPublishing the package...')
-//   await run('pnpm', [
-//     'publish',
-//     '--tag',
-//     tags[tag],
-//     '--ignore-scripts',
-//     '--no-git-checks'
-//   ])
+  //   // Publish the package.
+  //   step('\nPublishing the package...')
+  //   await run('npm', [
+  //     'publish',
+  //     '--tag',
+  //     tags[tag],
+  //     '--ignore-scripts',
+  //     '--no-git-checks'
+  //   ])
 
   // Push to GitHub.
   step('\nPushing to GitHub...')
