@@ -1,0 +1,192 @@
+---
+import ReloadPrompt from '@ui/pwa/ReloadPrompt.astro'
+import Favicons from '@ui/Favicons.astro'
+import { pwaInfo } from 'virtual:pwa-info'
+
+type Image = {
+  src: string
+  alt: string
+}
+
+type SEOMetadata = {
+  name: string
+  title: string
+  description: string
+  image: Image
+  canonicalURL?: URL | string
+  locale?: string
+}
+
+type OpenGraph = Partial<SEOMetadata> & {
+  type?: string
+}
+
+type Twitter = Partial<SEOMetadata> & {
+  handle?: string
+  card?: 'summary' | 'summary_large_image'
+}
+
+export type Props = {
+  title: string
+  description: string
+  image: Image
+  canonicalURL?: URL
+  class?: string
+  for: 'website' | 'article'
+}
+
+const {
+  title,
+  description,
+  image: resolvedImg,
+  canonicalURL = new URL(Astro.request.url, Astro.site),
+  for: pageType,
+  class: className,
+} = Astro.props as Props
+
+console.log(new URL(resolvedImg.src, Astro.site).toString())
+
+const image = {
+  src: new URL(resolvedImg.src, Astro.site).toString(),
+  alt: resolvedImg.alt,
+}
+
+const themeColor = {
+  website: '#8D46E7',
+  article: '#fff',
+}[pageType]
+
+const ensureTrailingSlash = (url: string | URL) =>
+  url.toString().replace(/\/$/, '') + '/'
+
+const locale = 'en'
+
+const og = {
+  name: 'My Site',
+  title,
+  description,
+  canonicalURL,
+  image,
+  locale,
+  type: pageType,
+} satisfies OpenGraph
+
+const twitter = {
+  title,
+  description,
+  canonicalURL,
+  image,
+  locale,
+  card: 'summary_large_image',
+  handle: 'astrodotbuild',
+} satisfies Twitter
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="theme-color" content={themeColor} />
+    <meta name="msapplication-TileColor" content={themeColor} />
+
+    <Favicons />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/rss.xml"
+      title="RSS"
+    />
+
+    <link rel="canonical" href={ensureTrailingSlash(canonicalURL)} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content={og.title} />
+    <meta property="og:type" content={og.type} />
+    <meta property="og:url" content={ensureTrailingSlash(og.canonicalURL)} />
+    <meta property="og:locale" content={og.locale} />
+    <meta property="og:description" content={og.description} />
+    <meta property="og:site_name" content={og.name} />
+    {og.image && <meta property="og:image" content={og.image.src} />}
+    {og.image && <meta property="og:image:alt" content={og.image.alt} />}
+
+    <!-- Twitter Tags -->
+    {twitter.card && <meta name="twitter:card" content={twitter.card} />}
+    {twitter.handle && <meta name="twitter:site" content={twitter.handle} />}
+
+    <meta name="twitter:title" content={twitter.title} />
+    <meta name="twitter:description" content={twitter.description} />
+    {twitter.image && <meta name="twitter:image" content={twitter.image.src} />}
+    {
+      twitter.image && (
+        <meta name="twitter:image:alt" content={twitter.image.alt} />
+      )
+    }
+
+    <!-- Avoiding Foc -->
+    <script is:inline>
+      if (
+        localStorage.getItem('theme-preference') === 'dark' ||
+        (!('theme-preference' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      )
+        document.documentElement.classList.add('dark')
+      else document.documentElement.classList.remove('dark')
+      window.onload = () => {
+        // set on load so screen readers can see latest value on the button
+        if (
+          localStorage.getItem('theme-preference') === 'dark' ||
+          (!('theme-preference' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        )
+          document.documentElement.classList.add('dark')
+        else document.documentElement.classList.remove('dark')
+      }
+    </script>
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+    <!-- Font preloads -->
+    <link
+      rel="preload"
+      href="/fonts/Inter/Inter.var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- Loading fonts into stylesheet, /fonts/Inter/.. lies in public directory for me. -->
+    <style>
+      @font-face {
+        font-family: 'InterVar';
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: normal;
+        src: url('/fonts/Inter/Inter.var.woff2') format('woff2-variations'),
+          url('/fonts/Inter/Inter.var.woff2') format('woff2');
+        src: url('/fonts/Inter/Inter.var.woff2') format('woff2')
+          tech('variations');
+      }
+      @font-face {
+        font-family: 'InterVar';
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: italic;
+        src: url('/fonts/Inter/Inter-Italic.var.woff2')
+            format('woff2-variations'),
+          url('/fonts/Inter/Inter-Italic.var.woff2') format('woff2');
+        src: url('/fonts/Inter/Inter-Italic.var.woff2') format('woff2')
+          tech('variations');
+      }
+    </style>
+  </head>
+  <body class={className}>
+    <slot />
+    <ReloadPrompt />
+  </body>
+</html>

@@ -1,0 +1,24 @@
+---
+import Core from './Core.astro'
+
+export type Props = {
+  title?: string
+  description?: string
+  image?: string
+  for?: 'website' | 'article'
+  class?: string
+}
+
+const image = {
+  src: '/og/social.png',
+  alt: 'Make the Web You want to make it!',
+}
+---
+
+<Core title="Title" description="Desc" for="website" image={image} class="">
+  <header></header>
+  <main>
+    <slot />
+  </main>
+  <footer></footer>
+</Core>
