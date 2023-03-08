@@ -12,7 +12,10 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release": "node scripts/release.js"
   },
+  
   "dependencies": {
+    "@astrojs/solid-js": "^2.1.0",
+    "solid-js": "^1.6.12",
     "astro": "^2.0.18"
   },
   "devDependencies": {
@@ -22,6 +25,8 @@
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
     "semver": "^7.3.8",
-    "wrangler": "^2.12.1"
+    "wrangler": "^2.12.1",
+    "@q1b/preset-eslint": "*",
+    "@q1b/preset-ts": "*"
   }
 }
