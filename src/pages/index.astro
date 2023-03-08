@@ -1,5 +1,7 @@
 ---
+import { getCollection } from 'astro:content'
 import Default from '@layouts/Default.astro'
+const allPosts = await getCollection('posts')
 ---
 
 <Default title="Home Page" description="Description">
@@ -10,8 +12,12 @@ import Default from '@layouts/Default.astro'
   <h1>My Astro Learning Blog</h1>
   <p>This is where I will post about my journey learning Astro.</p>
   <ul>
-    <li><a href="/posts/post-1/">Post 1</a></li>
-    <li><a href="/posts/post-2/">Post 2</a></li>
-    <li><a href="/posts/post-3/">Post 3</a></li>
+    {
+      allPosts.map((post) => (
+        <li>
+          <a href={'/posts/' + post.slug}>{post.data.title}</a>
+        </li>
+      ))
+    }
   </ul>
 </Default>

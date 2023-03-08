@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content'
+import Default from '@layouts/Default.astro'
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts')
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    )
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    }
+  })
+}
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+---
+
+<Default title={tag}>
+  <p>Posts tagged with {tag}</p>
+  <ul>
+    {
+      posts.map((post: any) => (
+        <li>
+          <a href={post.url}>{post.frontmatter.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Default>
