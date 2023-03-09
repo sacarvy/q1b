@@ -5,19 +5,5 @@ const allPosts = await getCollection('posts')
 ---
 
 <Default title="Home Page" description="Description">
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/posts/">Blog</a>
-
-  <h1>My Astro Learning Blog</h1>
-  <p>This is where I will post about my journey learning Astro.</p>
-  <ul>
-    {
-      allPosts.map((post) => (
-        <li>
-          <a href={'/posts/' + post.slug}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <h1>HOME</h1>
 </Default>

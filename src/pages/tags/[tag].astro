@@ -1,4 +1,5 @@
 ---
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from 'astro'
 import { getCollection } from 'astro:content'
 import Default from '@layouts/Default.astro'
 
@@ -16,7 +17,8 @@ export async function getStaticPaths() {
     }
   })
 }
-
+type Params = InferGetStaticParamsType<typeof getStaticPaths>
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
 const { tag } = Astro.params
 const { posts } = Astro.props
 ---
@@ -25,9 +27,9 @@ const { posts } = Astro.props
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      posts.map((post: any) => (
+      posts.map((post) => (
         <li>
-          <a href={post.url}>{post.frontmatter.title}</a>
+          <a href={'/posts/' + post.slug}>{post.data.title}</a>
         </li>
       ))
     }

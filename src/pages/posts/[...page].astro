@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content'
+import Default from '@layouts/Default.astro'
+export async function getStaticPaths({ paginate }) {
+  const blogEntries = await getCollection('posts')
+
+  let pg = paginate(blogEntries, { pageSize: 3 })
+  return [{ params: { page: undefined }, props: pg[0].props }, ...pg]
+}
+const { page } = Astro.props
+---
+
+<Default title="All Posts" description="All of your post are shown here">
+  <h1>My Astro Learning Blog</h1>
+  <p>This is where I will post about my journey learning Astro.</p>
+  <ul>
+    {
+      page.data.map((post, index) => {
+        return (
+          <li>
+            <a href={'/posts/post/' + `${index + 1}/`}> {post.data.title} </a>{' '}
+          </li>
+        )
+      })
+    }
+  </ul>
+  {page.url.prev && <a href={page.url.prev}>Previous</a>}
+  {page.url.next && <a href={page.url.next}>Next</a>}
+</Default>
