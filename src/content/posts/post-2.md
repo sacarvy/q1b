@@ -9,4 +9,20 @@ pubDate: 2022-07-08
 tags: ['astro', 'blogging', 'learning in public', 'successes']
 ---
 
-After a successful first week learning Astro, I decided to try some more. I wrote and imported a small component from memory!
+# My Second Blog Post
+
+Published on: 2022-07-08
+
+Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+
+## What I've accomplished
+
+1. **Adding Layouts**
+
+2. **Adding Tailwindcss**
+
+3. **Adding SEO**
+
+## What's next
+
+I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
