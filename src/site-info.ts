@@ -18,9 +18,10 @@ export type SiteInfo = {
 };
 
 const siteInfo = {
-    name: "Q1B software developer",
-    title: "Q1B PORTFOLIO",
-    description: "Digital Open Home of Sukhpreet Singh aka `q1b`",
+    name: "q1b a.k.a Sukhpreet Singh",
+    title: "q1b a.k.a Sukhpreet Singh",
+    description:
+        "Digital Open Home of Sukhpreet Singh aka `q1b` to bring forth the thoughts and share the learnings back to developers.",
     image: {
         src: "/og/default.jpg",
         alt: "Build the web you want",

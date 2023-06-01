@@ -1,5 +1,5 @@
 ---
-import Logo from "~/components/Logo.tsx";
+import Logo from "~/components/Logo";
 import RollingLabel from "~/components/Footer/rolling_labels.svelte";
 import { LinkIcon, PenIcon } from "~/icons";
 import Wrapper from "~/layouts/Wrapper.astro";
@@ -33,11 +33,13 @@ const resolvedImage = {
 
 const canonicalURL = new URL(Astro.request.url, Astro.site);
 const currentPage = Astro.url.pathname;
-const GITHUB_EDIT_URL = `https://github.com/q1b/q1b/edit/main/src/${pageType === "website" ? "pages" : "content"}`;
+const GITHUB_EDIT_URL = `https://${pageType === "article" && "pr.new/"}github.com/q1b/q1b/edit/main/src/${
+    pageType === "website" ? "pages" : "content"
+}`;
 
 let githubEditUrl = GITHUB_EDIT_URL;
 if (fileName && collection && pageType === "article") {
-    githubEditUrl += `/${collection}/${encodeURI(fileName)}`;
+    githubEditUrl += `/${collection}/${encodeURI(fileName)}?initialPath=${Astro.url.pathname}`;
 } else {
     switch (currentPage) {
         case "/":
@@ -84,7 +86,7 @@ if (fileName && collection && pageType === "article") {
             currentPage === "/wallpapers" && "max-w-6xl"
         )}
     >
-        <a href="/" class="tab-highlight-none">
+        <a href="/" title="Home Link" class="tab-highlight-none">
             <Logo />
         </a>
 
@@ -118,17 +120,29 @@ if (fileName && collection && pageType === "article") {
                     class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
                 >
                     <li>
-                        <a href="/posts" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                        <a
+                            href="/posts"
+                            class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
+                            title="Link to Learnings"
+                        >
                             Posts <LinkIcon client:idle />
                         </a>
                     </li>
                     <li>
-                        <a href="/resume" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                        <a
+                            href="/resume"
+                            class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
+                            title="Link to Resume"
+                        >
                             Resume <LinkIcon client:idle />
                         </a>
                     </li>
                     <li>
-                        <a href="/wallpapers" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                        <a
+                            href="/wallpapers"
+                            class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
+                            title="beautiful wallpapers"
+                        >
                             Wallpapers <LinkIcon client:idle />
                         </a>
                     </li>
@@ -152,6 +166,7 @@ if (fileName && collection && pageType === "article") {
                                     <a
                                         href={platform.href}
                                         target="_blank"
+                                        title={`external link to ${key}`}
                                         class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                                     >
                                         {key} <LinkIcon client:idle />

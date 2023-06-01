@@ -1,5 +1,5 @@
 ---
-import TailwindcssIndicator from "~/components/tailwindcss-indicator.astro";
+// import TailwindcssIndicator from "~/components/tailwindcss-indicator.astro";
 import { PenIcon } from "~/icons";
 import "~/styles/global.css";
 export type Image = {
@@ -162,7 +162,7 @@ const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/,
         </style>
     </head>
     <body class={className}>
-        <TailwindcssIndicator />
+        <!-- <TailwindcssIndicator /> -->
         {
             extras?.githubEditUrl && (
                 <a

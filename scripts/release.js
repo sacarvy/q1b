@@ -77,9 +77,17 @@ async function main() {
     // await run("npm", ["run", "pages:preview"]);
 
     // Commit changes to the Git and create a tag.
-    step("\nCommitting changes...");
-    await run("git", ["add", "CHANGELOG.md", "package.json"]);
-    await run("git", ["commit", "-m", `release: v${targetVersion}`]);
+    step("\nCommitting changes... to package.json");
+    await run("git", ["add", "package.json"]);
+
+    // Enter Commit Message
+    await run("git", ["add", "."]);
+    const { msg } = await prompts({
+        type: "text",
+        name: "msg",
+        message: "Enter Commit Message",
+    });
+    await run("git", ["commit", "-m", msg]);
     await run("git", ["tag", `v${targetVersion}`]);
 
     // Deploying the website.
