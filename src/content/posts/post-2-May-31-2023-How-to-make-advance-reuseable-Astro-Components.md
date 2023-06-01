@@ -1,5 +1,5 @@
 ---
-title: How to make Advance Reuseable Astro Component with TypeScript Support
+title: Advance Reuseable Astro Components using TypeScript
 description: Perfect Pattern to built reuseable component with typescript supoprt, with few lines of code
 pubDate: 2023-06-01
 tags: ["astro", "front-end"]
