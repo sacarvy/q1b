@@ -1,0 +1,198 @@
+---
+import type { Contacts, Education, Passion, Skills, Work } from "~/components/Resume/type";
+import Link from "~/components/Resume/link.astro";
+import Layout from "../layouts/Layout.astro";
+import Resume from "~/components/Resume/index.astro";
+import { DownloadIcon } from "~/icons";
+
+const passion = {
+    games: "Basketball",
+    others: "Meditation Yoga",
+} satisfies Passion;
+
+const skills = {
+    "SPA Frameworks": ["Svelte", "React", { label: "Solidjs", active: true }],
+    "Programming Languages": ["Javascript", { label: "Typescript", active: true }],
+    "CSS Framework": [{ label: "Tailwindcss", active: true }],
+    Others: ["Astro", "Nuxt", { label: "Nextjs", active: true }],
+} satisfies Skills;
+
+const contacts = {
+    Email: {
+        label: "peadevp@gmail.com",
+        value: "mailto:peadevp@gmail.com",
+    },
+    "Phone Number": {
+        label: "+91 8769514159",
+        value: "tel:+918769514159",
+    },
+    "Github Repo": {
+        label: "github.com/q1b",
+        value: "https://github.com/q1b",
+    },
+} satisfies Contacts;
+
+const start = new Date("June 2021");
+const now = new Date();
+
+const diff = now.getFullYear() - start.getFullYear();
+let label = "";
+
+switch (diff) {
+    case 1:
+        label = "1st";
+        break;
+    case 2:
+        label = "2nd";
+        break;
+    case 3:
+        label = "3rd";
+        break;
+    case 4:
+        label = "4th";
+    default:
+        label = "Passed Out";
+        break;
+}
+label += " year";
+const education = [
+    {
+        degree: "B.tech A.I & C.S",
+        place: "Sri Sri University",
+        marksHeader: "status",
+        marks: label,
+        marksClass: "text-yellow-500 dark:text-yellow-500",
+    },
+    {
+        degree: "High School",
+        place: "Kendriya Vidyalya",
+        marksHeader: "%",
+        marks: "92.8",
+        marksClass: "text-green-500 dark:text-green-400",
+    },
+] satisfies Education;
+
+const work = [
+    {
+        type: "freelance work",
+        title: "Quiz App",
+        items: ["Designed UI", "Used flutter,dart"],
+    },
+] satisfies Work;
+---
+
+<Layout title="Welcome to Astro.">
+    <main class="flex max-w-3xl flex-col w-full justify-center mt-16 mb-24">
+        <div class="w-full">
+            <div class="flex justify-between items-start">
+                <h2
+                    class="text-xl pl-2 font-robotic font-medium xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-800 dark:text-slate-300 mb-4"
+                >
+                    Resume
+                </h2>
+                <a
+                    href="#"
+                    title="Comming Soon"
+                    aria-disabled="true"
+                    class="relative aria-disabled:hidden -top-2 text-white opacity-30 group gap-x-1 px-1.5 py-1 bg-blue-500 dark:bg-slate-500/20 rounded-lg dark:rounded-xl inline-flex items-center"
+                >
+                    <span class="pt-1 leading-4 font-medium text-white">Download</span>
+                    <span> <DownloadIcon client:visible class="w-5 h-5" /></span>
+                </a>
+            </div>
+        </div>
+
+        <h1
+            class="text-4xl xs:text-6xl sm:text-7xl xl:text-8xl text-slate-700 dark:text-white mb-4 md:mb-6 xl:mb-8 2xl:mb-10"
+        >
+            Sukhpreet Singh
+        </h1>
+        <p
+            class="w-full text-slate-600 dark:text-slate-400 font-robotic pl-0.5 text-sm xs:text-base sm:text-lg md:text-xl xl:text-2xl 2xl:text-3xl mb-4"
+        >
+            Front-end Developer, UI/Ux designer, Future AI Engineer and a tech enthusiast
+        </p>
+        <div class="w-full flex items-center gap-x-2 justify-center mb-12">
+            <div
+                class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
+            >
+                <div class="w-6 xs:w-12 h-2 xs:h-4 bg-cyan-500 dark:bg-cyan-400 rounded-md"></div>
+                <span class="text-slate-800 font-medium dark:text-slate-200">Preffered</span>
+            </div>
+            <div
+                class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
+            >
+                <div class="w-6 xs:w-12 h-2 xs:h-4 bg-slate-600 dark:bg-slate-300 rounded-md"></div>
+                <span class="text-slate-800 dark:text-slate-200">Familiar</span>
+            </div>
+        </div>
+        <div class="w-full flex justify-center items-center">
+            <div
+                class="grid lg:grid-cols-3 grid-cols-2 max-[468px]:grid-cols-1 sm:w-[420px] min-[484px]:w-[484px] max-[516px]:gap-x-[4rem] gap-x-[6rem] lg:w-max gap-y-8 sm:gap-x-[10rem] lg:gap-x-0 mb-12 max-[320px]:overflow-x-hidden"
+            >
+                <Resume contacts={contacts} passion={passion} education={education} skills={skills} work={work} />
+            </div>
+        </div>
+        <div
+            class="px-2 py-4 xs:px-4 xs:py-6 box-border bg-slate-50 border border-slate-200 dark:border-transparent dark:bg-slate-950/10 backdrop-blur rounded-md"
+        >
+            <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Work Experience</h2>
+            <div class="flex items-stretch justify-between mb-8">
+                <div class="flex flex-col shrink gap-y-2">
+                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">BHumanAI</h2>
+                    <span
+                        class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal"
+                        >As a Designer <span class="xs:hidden"> &</span>
+                        <span class="hidden xs:inline-block"> and</span> Front-end Engineer</span
+                    >
+                </div>
+                <div class="flex flex-col items-end gap-y-2">
+                    <div
+                        class="text-xs xs:text-sm sm:text-base flex gap-x-0.5 xs:gap-x-1 font-medium dark:font-normal text-teal-400 items-center"
+                    >
+                        <span>March <span class="hidden xs:inline-block">2022</span></span>
+                        <span>-</span>
+                        <span>July 2022</span>
+                    </div>
+                    <span
+                        class="text-xs xs:text-sm sm:text-base text-slate-500 font-medium dark:font-normal dark:text-white"
+                        >Remote</span
+                    >
+                </div>
+            </div>
+            <p class="text-slate-800 dark:text-slate-200 leading-6 mb-4">
+                BHumanAI is a US Based Company, from where my career got started as my first job and loved it! At
+                BhumanAI they have a pre working website yet, because it was complicated to work with it. we decided to
+                built it from scratch, our tech-stack included `solid-js` `tailwindcss` `typescript` and `axios`, as now
+                to get everything working we start with building separate small prototypes with small learning curve for
+                me in each prototype. It included advance concept which weren't present even on YouTube at that time, so
+                needed to done some research for it as well experiencing the tough time of debugging the bugs along the
+                process of integrating each small prototype into our giant application.
+            </p>
+            <div class="mb-4">
+                <h3 class="text-slate-800 dark:text-slate-100 mb-2">Prototypes included of:</h3>
+                <ul class="text-indigo-600 font-medium dark:font-normal dark:text-white list-decimal list-inside">
+                    <li>Recording on Web Or User can upload a video</li>
+                    <li>Sending the response of video to server in form of Blob through API</li>
+                    <li>building a timeline for selecting variables and mapping them to different timestamps</li>
+                    <li>Builting a CSV Editor</li>
+                    <li>Audio Embed it into CSV and Mapped to individual Variables!</li>
+                    <li>Finally checking everything in sync with server using Solid-js Store</li>
+                    <li>Workspace, Folder and File Structure implementation with proper optimizations</li>
+                </ul>
+            </div>
+            <p class="text-slate-800 dark:text-slate-200 mb-8">
+                Finally, concluding the amount of work there I spend doing helped me better understand the startup
+                culture of being a small family, focused on our goals, it's usually burn out days which made the
+                weekends fun for me, spending time on some of mine side-projects!
+            </p>
+            <Link
+                href="/documents/Sukhpreet_Singh_Letter_of_Recommendation_From_BhumanAI.pdf"
+                download="Sukhpreet Singh Letter of Recommendation"
+                class="text-base"
+            >
+                Letter of Recommandation from CEO of BHumanAI ( DON BOSCO )
+            </Link>
+        </div>
+    </main>
+</Layout>

@@ -1,0 +1,28 @@
+---
+type Props =
+    | {
+          type: "single";
+          x: number;
+          y: number;
+          color: string;
+      }
+    | {
+          type?: never;
+          x: number;
+          y: number;
+          color?: never;
+      };
+
+const { type, x, y, color } = Astro.props;
+---
+
+{
+    type === "single" ? (
+        <circle id="circle-2" cx={`${x}`} cy={`${y}`} r="6" fill={`${color}`} />
+    ) : (
+        <>
+            <circle id="circle-1" cx={`${x}`} cy={`${y}`} r="6" fill="currentColor" />
+            <circle id="circle-1" cx={`${x}`} cy={`${y}`} r="11" fill="none" stroke="currentColor" stroke-width="2" />
+        </>
+    )
+}

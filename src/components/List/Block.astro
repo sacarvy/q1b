@@ -1,0 +1,19 @@
+---
+import Circle from "~/components/List/parts/Circle.astro";
+import Slope from "~/components/List/parts/Slope.astro";
+import VerticalLine from "~/components/List/parts/VerticalLine.astro";
+import Text from "~/components/List/parts/Text.astro";
+
+export type Props = {
+    y: number;
+    color: string;
+    text: string;
+};
+
+const { y, color, text } = Astro.props;
+---
+
+<VerticalLine x={20} y={{ from: y - 30, to: y }} color={color} />
+<Slope x={20} y={y} color={color} />
+<Circle type="single" x={42} y={y + 10} color={color} />
+<Text x={60} y={y + 15} color={color} text={text} />

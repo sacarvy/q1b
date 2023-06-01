@@ -1,26 +1,38 @@
 ---
-import { getCollection } from 'astro:content'
-import Default from '@layouts/Default.astro'
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+import Default from "~/layouts/Layout.astro";
 
-export async function getStaticPaths({ paginate }) {
-  const blogEntries = await getCollection('posts')
-  let pg = paginate(blogEntries, { pageSize: 1 })
-  console.log(pg)
-  return pg
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const blogEntries = await getCollection("posts");
+    let pg = paginate(blogEntries, { pageSize: 1 });
+    return pg;
 }
-const { page } = Astro.props
-const post = page.data[0]
-const { Content } = await post.render()
+const { page } = Astro.props;
+const post = page.data[0];
+const { Content } = await post.render();
 ---
 
-<Default title="All Posts" description="All of your post are shown here">
-  <h1>My Astro Learning Blog</h1>
-  <p>This is where I will post about my journey learning Astro.</p>
-
-  <Content />
-  {page.url.prev && <a href={page.url.prev}>Previous</a>}
-  {page.url.prev && page.url.next && <span> | </span>}
-  {page.url.next && <a href={page.url.next}>Next</a>}
+<Default
+    title={post.data.title}
+    description={post.data.description}
+    pageType="article"
+    fileName={post?.id}
+    collection={post?.collection}
+>
+    <main class="max-w-3xl mt-16 mb-24">
+        <h1 class="text-4xl dark:text-white text-indigo-600 mb-8 font-semibold">{post.data.title}</h1>
+        <h2 class="text-lg text-slate-600 font-medium dark:text-slate-200 mb-12">{post.data.description}</h2>
+        <!-- <pre> {JSON.stringify(post,null,2)}  {JSON.stringify(headings,null,2)} </pre> -->
+        <article class="prose dark:prose-invert max-w-none pb-12 border-b-2 border-b-slate-400">
+            <Content />
+        </article>
+        <div class="flex items-center gap-x-2 dark:text-white mt-6">
+            {page.url.prev && <a href={page.url.prev}>Previous</a>}
+            {page.url.prev && page.url.next && <span> | </span>}
+            {page.url.next && <a href={page.url.next}>Next</a>}
+        </div>
+    </main>
 </Default>
 
 <!-- ---

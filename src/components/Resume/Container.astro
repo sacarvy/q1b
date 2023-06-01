@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "~/lib/utils";
+export type Props = Omit<HTMLAttributes<"div">, "slot">;
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div class={cn("flex flex-col h-full w-max", className)} {...attrs}>
+    <slot />
+</div>

@@ -1,0 +1,36 @@
+---
+import Container from "../Container.astro";
+import Heading from "../heading.astro";
+import SubHeading from "../subHeading.astro";
+import Text from "~/components/Resume/text.astro";
+import type { Skills } from "../type";
+
+export type Props = {
+    details: Skills;
+};
+
+const { details } = Astro.props;
+---
+
+<Container>
+    <Heading>Skills</Heading>
+    {
+        Object.keys(details).map((detail) => (
+            <div class="mt-4">
+                <SubHeading>{detail}</SubHeading>
+                <Text class="inline-flex gap-x-2">
+                    {details[detail].map((skill) => (
+                        <span
+                            class:list={{
+                                "text-cyan-500 dark:text-cyan-400": skill?.active,
+                                "text-slate-600 dark:text-slate-300": !!!skill?.active,
+                            }}
+                        >
+                            {typeof skill === "string" ? skill : skill.label}
+                        </span>
+                    ))}
+                </Text>
+            </div>
+        ))
+    }
+</Container>

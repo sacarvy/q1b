@@ -1,0 +1,14 @@
+---
+import Line from "./line.astro";
+import Circle from "./circle.astro";
+import Slope from "./slope.astro";
+import Text from "./text.astro";
+const { y } = Astro.props;
+---
+
+<Line x={20} endY={y - 30} startY={y} />
+<Slope x={20} {y} />
+<Circle type="single" x={42} y={y + 10} />
+<Text x={60} y={y + 15}>
+	<slot />
+</Text>

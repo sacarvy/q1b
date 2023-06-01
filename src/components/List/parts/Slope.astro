@@ -1,0 +1,20 @@
+---
+import Curve from "./Curve.astro";
+export type Props = {
+    x: number;
+    y: number;
+    color: string;
+};
+// M 20,50 Q 22,60 32,60
+const { x, y, color } = Astro.props;
+---
+
+<Curve
+    from={{
+        x,
+        y,
+    }}
+    to={{ x: x + 12, y: y + 10 }}
+    via={{ x: x + 2, y: y + 10 }}
+    color={color}
+/>

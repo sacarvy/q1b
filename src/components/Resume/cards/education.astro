@@ -1,0 +1,31 @@
+---
+import Heading from "../heading.astro";
+import Container from "../Container.astro";
+import SubHeading from "../subHeading.astro";
+import Text from "../text.astro";
+import type { Education } from "~/components/Resume/type";
+
+export type Props = {
+    details: Education;
+};
+
+const { details } = Astro.props;
+---
+
+<Container>
+    <Heading>Education</Heading>
+    {
+        details.map((detail) => (
+            <div class="mt-4 grid grid-cols-2 gap-x-1">
+                <div class="">
+                    <SubHeading>{detail.degree}</SubHeading>
+                    <Text>{detail.place}</Text>
+                </div>
+                <div class="ml-2">
+                    <SubHeading> {detail.marksHeader} </SubHeading>
+                    <Text class={detail.marksClass}>{detail.marks}</Text>
+                </div>
+            </div>
+        ))
+    }
+</Container>

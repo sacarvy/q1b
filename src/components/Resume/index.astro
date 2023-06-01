@@ -1,0 +1,23 @@
+---
+import Skills from "./cards/skill.astro";
+import Links from "./cards/links.astro";
+import Passion from "./cards/passion.astro";
+import Education from "./cards/education.astro";
+import Work from "./cards/work.astro";
+import type * as Types from "~/components/Resume/type";
+
+export type Props = {
+    skills: Types.Skills;
+    education: Types.Education;
+    passion: Types.Passion;
+    contacts: Types.Contacts;
+    work: Types.Work;
+};
+const { skills, education, passion, contacts, work } = Astro.props;
+---
+
+<Skills details={skills} />
+<Links details={contacts} />
+<Education details={education} />
+<Passion details={passion} />
+<!-- <Work details={work} /> -->

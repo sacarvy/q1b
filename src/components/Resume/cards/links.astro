@@ -1,0 +1,29 @@
+---
+import Heading from "../heading.astro";
+import Container from "../Container.astro";
+import SubHeading from "../subHeading.astro";
+import Link from "../link.astro";
+import type { Contacts } from "~/components/Resume/type";
+
+export type Props = {
+    details: Contacts;
+};
+
+const { details } = Astro.props satisfies Props;
+---
+
+<Container>
+    <Heading>Links</Heading>
+    {
+        Object.keys(details).map((detail) => {
+            const href = details[detail].value;
+            const label = details[detail].label;
+            return (
+                <div class="mt-4">
+                    <SubHeading>{detail}</SubHeading>
+                    <Link href={href}>{label}</Link>
+                </div>
+            );
+        })
+    }
+</Container>

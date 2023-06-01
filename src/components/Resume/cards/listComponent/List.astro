@@ -1,0 +1,6 @@
+---
+import ListStr from "./ListStr.astro";
+const { items } = Astro.props;
+---
+
+{items.map((item, i) => <ListStr y={20 + 30 * (i + 1)}>{item}</ListStr>)}

@@ -1,0 +1,167 @@
+---
+import Logo from "~/components/Logo.tsx";
+import RollingLabel from "~/components/Footer/rolling_labels.svelte";
+import { LinkIcon, PenIcon } from "~/icons";
+import Wrapper from "~/layouts/Wrapper.astro";
+import siteInfo from "~/site-info";
+import { ThemeButton } from "~/lib/theme";
+import { cn } from "~/lib/utils";
+
+export type Props = {
+    title?: string;
+    description?: string;
+    image?: { src: string; alt: string };
+    pageType?: "article" | "website";
+    collection?: "posts";
+    fileName?: string;
+};
+
+const {
+    title = siteInfo.title,
+    description = siteInfo.description,
+    image = siteInfo.image,
+    pageType = "website",
+    collection,
+    fileName,
+} = Astro.props;
+const twitterHandle = "uniuwe";
+const rotatings = ["Yoga Instructor", "Software Developer", "Basketball Player", "Content Creator"];
+const resolvedImage = {
+    src: new URL(image.src, Astro.site).toString(),
+    alt: image.alt,
+};
+
+const canonicalURL = new URL(Astro.request.url, Astro.site);
+const currentPage = Astro.url.pathname;
+const GITHUB_EDIT_URL = `https://github.com/q1b/q1b/edit/main/src/${pageType === "website" ? "pages" : "content"}`;
+
+let githubEditUrl = GITHUB_EDIT_URL;
+if (fileName && collection && pageType === "article") {
+    githubEditUrl += `/${collection}/${encodeURI(fileName)}`;
+} else {
+    switch (currentPage) {
+        case "/":
+            githubEditUrl += "/index";
+            break;
+        case "/posts":
+            githubEditUrl += currentPage + encodeURI("/[...page]");
+            break;
+        default:
+            githubEditUrl += currentPage;
+            break;
+    }
+    githubEditUrl += ".astro";
+}
+---
+
+<Wrapper
+    class="px-4 py-6"
+    name={siteInfo.name}
+    title={title}
+    description={description}
+    theme={"#1e293b"}
+    twitter={{ handle: twitterHandle }}
+    og={{ type: pageType }}
+    canonicalURL={canonicalURL}
+    image={resolvedImage}
+    extras={{
+        githubEditUrl,
+    }}
+>
+    <div
+        class="w-full h-[100vh] top-0 left-0 content-[''] absolute bg-gradient-to-t from-white/80 via-white/50 to-white/10 dark:from-slate-900/80 dark:via-slate-900/50 dark:to-slate-500/10 z-[-1]"
+    >
+    </div>
+    <div
+        class="w-full h-[calc(100%-100vh)] top-[100vh] left-0 content-[''] absolute bg-white/80 dark:bg-slate-900/80 z-[-1]"
+    >
+    </div>
+    <!-- [box-shadow:0px_4px_6px_0px_#33415533,inset_0px_1px_6px_0px_#33415515,inset_0px_1px_36px_6px_#dff1,inset_17px_-2px_72px_12px_#33415515] dark: dark:[box-shadow:0px_4px_6px_0px_#1a91ff05,inset_0px_1px_6px_0px_#fff,inset_0px_1px_36px_6px_#fff1,inset_17px_-2px_72px_12px_#fff] -->
+    <!-- class="w-full max-w-3xl dark:bg-slate-700/50 border dark:border-slate-700 shadow backdrop-blur-[2px] px-2 py-1 rounded-md h-10 inline-flex gap-x-6" -->
+    <header
+        class={cn(
+            "flex [box-shadow:0px_4px_6px_0px_rgba(51,65,85,0.2)] dark:[box-shadow:rgba(26,145,255,0.02)_0px_4px_12px_4px,_rgba(51,_65,_85,_0.082)_0px_1px_6px_0px_inset,_rgba(255,_255,_255,_0.067)_0px_1px_36px_6px_inset,_rgba(51,_65,_85,_0.082)_17px_-2px_72px_12px_inset] w-full max-w-3xl bg-sky-400/0 transition-colors backdrop-blur-[2px] backdrop-saturate-150 gap-x-4 items-center px-3 py-2 rounded-xl",
+            currentPage === "/wallpapers" && "max-w-6xl"
+        )}
+    >
+        <a href="/" class="tab-highlight-none">
+            <Logo />
+        </a>
+
+        <ThemeButton client:idle />
+    </header>
+
+    <slot />
+
+    <footer
+        class={cn(
+            "w-full bg-gradient-to-tr from-indigo-700/50 to-indigo-400/80 dark:from-slate-950/50 dark:to-slate-800/40 dark:shadow-sm max-w-3xl px-4 pt-4 pb-4 rounded-lg flex flex-col xs:flex-row gap-4 justify-between",
+            currentPage === "/" && "mt-16"
+        )}
+    >
+        <div class="flex flex-col gap-y-4">
+            <RollingLabel client:idle list={rotatings} />
+            <h2 class="text-3xl mb-1 text-white font-bold font-robotic">Sukhpreet Singh</h2>
+            <h4 class="text-xl text-white/80 font-semibold font-robotic">
+                Single Child, Self Motivated <br /> 19year old, Single Boy
+            </h4>
+        </div>
+        <div class="flex flex-row gap-x-8 gap-y-3 xs:flex-col sm:flex-row">
+            <div class="font-robotic">
+                <h2
+                    style="text-shadow: 0px 0px 1px #0007;"
+                    class="text-indigo-600 dark:text-slate-400 mb-1 text-sm font-semibold"
+                >
+                    Sitemap
+                </h2>
+                <ul
+                    class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
+                >
+                    <li>
+                        <a href="/posts" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                            Posts <LinkIcon client:idle />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/resume" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                            Resume <LinkIcon client:idle />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/wallpapers" class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2">
+                            Wallpapers <LinkIcon client:idle />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="font-robotic max-[332px]:hidden">
+                <h2
+                    style="text-shadow: 0px 0px 1px #0007;"
+                    class="text-indigo-600 dark:text-slate-400 mb-1 text-sm font-semibold"
+                >
+                    Social Links
+                </h2>
+                <ul
+                    class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
+                >
+                    {
+                        Object.keys(siteInfo.socials).map((key: string) => {
+                            const platform = siteInfo.socials[key as "github" | "instagram" | "twitter"];
+                            return (
+                                <li>
+                                    <a
+                                        href={platform.href}
+                                        target="_blank"
+                                        class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
+                                    >
+                                        {key} <LinkIcon client:idle />
+                                    </a>
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
+        </div>
+    </footer>
+</Wrapper>

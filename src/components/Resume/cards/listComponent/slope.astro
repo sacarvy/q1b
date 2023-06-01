@@ -1,0 +1,15 @@
+---
+import Curve from "./curve.astro";
+const { x, y } = Astro.props;
+---
+
+<!-- generateCurve(x ,y ,x+2 , y+10, x+12, y+10) -->
+
+<Curve
+	startX={x}
+	startY={y}
+	curveX={x + 2}
+	curveY={y + 10}
+	endX={x + 12}
+	endY={y + 10}
+/>

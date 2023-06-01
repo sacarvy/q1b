@@ -1,0 +1,12 @@
+---
+const { startX, startY, curveX, curveY, endX, endY } = Astro.props;
+---
+
+<path
+	id="curve-line-1"
+	d={`M ${startX},${startY} Q ${curveX},${curveY} ${endX},${endY}`}
+	class="text-slate-500"
+	stroke="currentColor"
+	stroke-linecap="round"
+	stroke-width="4"
+	fill="none"></path>

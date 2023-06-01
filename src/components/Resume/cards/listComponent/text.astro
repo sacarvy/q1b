@@ -1,0 +1,10 @@
+---
+const { x, y } = Astro.props;
+---
+
+<text
+	x={`${x}`}
+	y={`${y}`}
+	fill="currentColor"
+	class="text-slate-500 font-medium"><slot /></text
+>

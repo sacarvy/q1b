@@ -1,0 +1,25 @@
+---
+import Heading from "../heading.astro";
+import Container from "../Container.astro";
+import SubHeading from "../subHeading.astro";
+import Text from "../text.astro";
+import type { Passion } from "../type";
+
+export type Props = {
+    details: Passion;
+};
+
+const { details } = Astro.props;
+---
+
+<Container>
+    <Heading>Passion</Heading>
+    {
+        Object.keys(details).map((detail) => (
+            <div class="mt-4">
+                <SubHeading>{detail}</SubHeading>
+                <Text>{details[detail]}</Text>
+            </div>
+        ))
+    }
+</Container>

@@ -1,0 +1,33 @@
+---
+import Circle from "./circle.astro";
+import Text from "./text.astro";
+import List from "./List.astro";
+
+const { items } = Astro.props;
+const [firstItem, ...otherItems] = items;
+---
+
+<svg viewBox="0 0 12 12" class="w-3 overflow-visible text-slate-400">
+	<path
+		id="main-line"
+		stroke-linecap="round"
+		d="M 20 0 V 20"
+		fill="none"
+		stroke-width="4"
+		stroke="currentColor"
+		class="text-slate-400"></path>
+	<Circle type="double" x={42} y={30} />
+	<!-- {generateCircle(42, 30, "double")} -->
+	<Text x={60} y={34}>
+		{firstItem}
+	</Text>
+	<!-- {generateText(60, 34, firstItem)} -->
+	<List items={otherItems} />
+	<!-- {generateBlocks(otherItems)} -->
+	<path
+		id="curve-line-1"
+		d="M 20,20 Q 20,30 30,30"
+		stroke="currentColor"
+		stroke-width="4"
+		fill="none"></path>
+</svg>

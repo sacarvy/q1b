@@ -1,0 +1,28 @@
+---
+import type { Work } from "~/components/Resume/type";
+import Container from "../Container.astro";
+import Heading from "../heading.astro";
+import SubHeading from "../subHeading.astro";
+import Text from "../text.astro";
+import List from "./listComponent/ListSvg.astro";
+
+export type Props = {
+    details: Work;
+};
+
+const { details } = Astro.props;
+---
+
+<Container>
+    <Heading>Work Profile</Heading>
+    {
+        details.map((detail) => (
+            <div class="my-4">
+                <SubHeading>{detail.type}</SubHeading>
+                <Text>{detail.title}</Text>
+                {/* <div class="w-64" style={`height:${30 * detail.items.length}px`}></div> */}
+                <List items={detail.items} />
+            </div>
+        ))
+    }
+</Container>

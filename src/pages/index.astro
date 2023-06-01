@@ -1,9 +1,7 @@
 ---
-import { getCollection } from 'astro:content'
-import Default from '@layouts/Default.astro'
-const allPosts = await getCollection('posts')
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Default title="Home Page" description="Description">
-  <h1>HOME</h1>
-</Default>
+<Layout title="Welcome to Astro.">
+    <main class="flex items-center justify-center group"></main>
+</Layout>

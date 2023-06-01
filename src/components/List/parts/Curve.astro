@@ -1,0 +1,20 @@
+---
+export type Props = {
+    from: { x: number; y: number };
+    to: { x: number; y: number };
+    via: { x: number; y: number };
+    color: string;
+};
+// from is starting coordinates
+// via are curve points
+// to is ending coordinates
+const { from, to, via, color } = Astro.props;
+---
+
+<path
+    id="curve-line-1"
+    d={`M ${from.x},${from.y} Q ${via.x},${via.y} ${to.x},${to.y}`}
+    stroke={`${color}`}
+    stroke-linecap="round"
+    stroke-width="4"
+    fill="none"></path>

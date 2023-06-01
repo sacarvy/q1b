@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
+# I, for one, welcome our new robotic overlords
+
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://q1b.pages.dev/sitemap-index.xml

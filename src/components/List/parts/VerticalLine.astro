@@ -1,0 +1,10 @@
+---
+export type Props = {
+    x: number;
+    y: { from: number; to: number };
+    color: string;
+};
+const { x, y, color } = Astro.props;
+---
+
+<path id="side-line-2" d={`M ${x} ${y.to} V ${y.from}`} stroke={color} stroke-width="4" fill="none"></path>

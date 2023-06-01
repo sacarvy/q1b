@@ -1,0 +1,12 @@
+---
+export type Props = {
+    x: number;
+    y: number;
+    color: string;
+    text: string;
+};
+
+const { x, y, color, text } = Astro.props;
+---
+
+<text x={`${x}`} y={`${y}`} fill={`${color}`} style="font-weight: 500;">{text}</text>
