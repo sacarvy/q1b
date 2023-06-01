@@ -77,10 +77,10 @@ async function main() {
     // await run("npm", ["run", "pages:preview"]);
 
     // Commit changes to the Git and create a tag.
-    step("\nCommitting changes... to package.json");
+    step("\nCommitting changes...");
     await run("git", ["add", "package.json"]);
-
     // Enter Commit Message
+    step("\n");
     await run("git", ["add", "."]);
     const { msg } = await prompts({
         type: "text",
