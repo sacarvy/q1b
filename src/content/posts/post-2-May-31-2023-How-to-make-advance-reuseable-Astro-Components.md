@@ -30,7 +30,6 @@ Below, snippet just provides us the HTMLAttributes type for **h1** and we used s
 import type { HTMLAttributes } from "astro/types";
 export type Props = HTMLAttributes<"h1">;
 ---
-
 <h1 {...Astro.props}>...</h1>
 ```
 
@@ -41,7 +40,6 @@ Yet, another problem which you might face is Astro by default binds the **slot**
 import type { HTMLAttributes } from "astro/types";
 export type Props = Omit<HTMLAttributes<"h2">, "slot">;
 ---
-
 <h1 {...Astro.props}>...</h1>
 ```
 
@@ -67,7 +65,6 @@ import { twMerge } from "tailwind-merge";
 export type Props = Omit<HTMLAttributes<"h1">, "slot">;
 const { class: className, ...attrs } = Astro.props;
 ---
-
 <h1 class={twMerge("font-bold text-2xl dark:text-white text-slate-800", className)} {...attrs}>
     <slot />
 </h1>
