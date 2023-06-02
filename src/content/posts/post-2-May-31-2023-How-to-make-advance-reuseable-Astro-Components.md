@@ -5,7 +5,7 @@ pubDate: 2023-06-01
 tags: ["astro", "front-end"]
 ---
 
-## How would you add a **id** prop conditionally in Astro
+## How would you add a __id__ prop conditionally in Astro
 
 In below example we are conditinally rendering the html based on id prop undefined or present.
 Yet, from first look you may get intution it's not the way!!!
