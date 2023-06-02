@@ -3,7 +3,7 @@ import type { Contacts, Education, Passion, Skills, Work } from "~/components/Re
 import Link from "~/components/Resume/link.astro";
 import Layout from "../layouts/Layout.astro";
 import Resume from "~/components/Resume/index.astro";
-import { DownloadIcon } from "~/icons";
+import { DownloadIcon, LinkIcon } from "~/icons";
 
 const passion = {
     games: "Basketball",
@@ -139,7 +139,9 @@ const work = [
             <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Work Experience</h2>
             <div class="flex items-stretch justify-between mb-8">
                 <div class="flex flex-col shrink gap-y-2">
-                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">BHumanAI</h2>
+                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
+                        <a href="https://www.bhuman.ai/" target="_blank" class="border-b border-b-sky-400"> BHumanAI</a>
+                    </h2>
                     <span
                         class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal"
                         >As a Designer <span class="xs:hidden"> &</span>
@@ -163,11 +165,16 @@ const work = [
             <p class="text-slate-800 dark:text-slate-200 leading-6 mb-4">
                 BHumanAI is a US Based Company, from where my career got started as my first job and loved it! At
                 BhumanAI they have a pre working website yet, because it was complicated to work with it. we decided to
-                built it from scratch, our tech-stack included `solid-js` `tailwindcss` `typescript` and `axios`, as now
-                to get everything working we start with building separate small prototypes with small learning curve for
-                me in each prototype. It included advance concept which weren't present even on YouTube at that time, so
-                needed to done some research for it as well experiencing the tough time of debugging the bugs along the
-                process of integrating each small prototype into our giant application.
+                built it from scratch, our front-end <strong>tech-stack</strong> included such as <strong
+                    >solid-js</strong
+                >
+                <strong>tailwindcss</strong>
+                <strong>typescript</strong>
+                and <strong>axios</strong>, as now to get everything working we start with building separate small
+                prototypes with small learning curve for me in each prototype. It included advance concept which weren't
+                present even on YouTube at that time, so needed to done some research for it as well experiencing the
+                tough time of debugging the bugs along the process of integrating each small prototype into our giant
+                application.
             </p>
             <div class="mb-4">
                 <h3 class="text-slate-800 dark:text-slate-100 mb-2">Prototypes included of:</h3>
@@ -183,16 +190,30 @@ const work = [
             </div>
             <p class="text-slate-800 dark:text-slate-200 mb-8">
                 Finally, concluding the amount of work there I spend doing helped me better understand the startup
-                culture of being a small family, focused on our goals, it's usually burn out days which made the
-                weekends fun for me, spending time on some of mine side-projects!
+                culture of being a small family, <strong>working alongside team</strong>, <stong
+                    >collaborating with others</stong
+                > and <strong>focused on our goals</strong>, it's usually burn out days which made the weekends fun for
+                me, spending time on some of mine side-projects!
             </p>
-            <Link
-                href="/documents/Sukhpreet_Singh_Letter_of_Recommendation_From_BhumanAI.pdf"
-                download="Sukhpreet Singh Letter of Recommendation"
-                class="text-base"
-            >
-                Letter of Recommandation from CEO of BHumanAI ( DON BOSCO )
-            </Link>
+            <div class="flex flex-col gap-y-4">
+                <Link
+                    href="/documents/Sukhpreet_Singh_Letter_of_Recommendation_From_BhumanAI.pdf"
+                    download="Sukhpreet Singh Letter of Recommendation"
+                    class="text-base"
+                >
+                    Letter of Recommandation from CEO of BHumanAI ( DON BOSCO )
+                </Link>
+                <div class="">
+                    <Link
+                        href="https://app.bhuman.ai"
+                        target="_blank"
+                        class="dark:text-slate-300 text-base group inline-flex items-center gap-x-2 bg-blue-500 dark:bg-transparent text-white shadow-sm shadow-blue-400 dark:shadow-blue-700 px-2 py-1.5 rounded-xl"
+                    >
+                        <span class="leading-5">Platform</span>
+                        <LinkIcon client:idle />
+                    </Link>
+                </div>
+            </div>
         </div>
     </main>
 </Layout>
