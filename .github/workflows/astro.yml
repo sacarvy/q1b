@@ -26,7 +26,6 @@ concurrency:
 
 env:
   BUILD_PATH: "." # default value when not using subfolders
-  OUTPUT_PATH: "./dist"
   # BUILD_PATH: subfolder
 
 jobs:
@@ -74,6 +73,6 @@ jobs:
             apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
             accountId: ${{ secrets.YOUR_ACCOUNT_ID }}
             projectName: q1b
-            directory: ${{ env.OUTPUT_PATH }}
+            directory: ${{ env.BUILD_PATH }}/dist
             # Enable Wrangler v3
             wranglerVersion: '3'
