@@ -2,9 +2,6 @@
 title: "My First Blog Post"
 pubDate: 2023-06-01
 description: "Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website."
-image:
-    url: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg"
-    alt: "The Astro logo with the word One."
 tags: ["astro"]
 ---
 
