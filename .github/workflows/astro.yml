@@ -65,10 +65,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
-        run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+        run: ${{ steps.detect-package-manager.outputs.runner }} astro build
         working-directory: ${{ env.BUILD_PATH }}
         
         
@@ -80,14 +77,14 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
         run: |
           ls  -la
-#       - name: Publish to Cloudflare Pages
-#         uses: cloudflare/pages-action@v1
-#         with:
-#           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-#           accountId: ${{ secrets.YOUR_ACCOUNT_ID }}
-#           projectName: q1b
-#           directory: ./dist
-#           working-directory: ${{ env.BUILD_PATH }}
-#           branch: main
-#           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-#           wranglerVersion: '3'
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.YOUR_ACCOUNT_ID }}
+          projectName: q1b
+          directory: ./dist
+          working-directory: ${{ env.BUILD_PATH }}
+          branch: main
+          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
+          wranglerVersion: '3'
