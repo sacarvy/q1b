@@ -5,7 +5,7 @@ description: "Welcome to my _new blog_ about learning Astro! Here, I will share 
 image:
     url: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg"
     alt: "The Astro logo with the word One."
-tags: ["astro", "blogging"]
+tags: ["astro"]
 ---
 
 ## What I've accomplished
