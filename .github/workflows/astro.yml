@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   build:
-    if: startsWith(github.head_ref, '/web-publisher')
+    if: startsWith(github.head_ref, 'web-publisher/')
     runs-on: ubuntu-latest
     permissions:
       contents: read
