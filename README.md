@@ -17,7 +17,7 @@ In this journey, gained a lot of fundamental learnings, as one among them,
 
 ### Recent Activites
 
--   ##### [AI Platform for Bhuman.ai]()
+-   ##### [AI Platform for Bhuman.ai](https://app.bhuman.ai)
     <details>
       <summary style="font-size:10px;" >Built Using:</summary>
        
@@ -38,7 +38,7 @@ In this journey, gained a lot of fundamental learnings, as one among them,
     - Best in-class performance
       ```
     </details>
--   ##### [Portfolio Website]()
+-   ##### [Portfolio Website](https://q1b.pages.dev)
     <details>
       <summary style="font-size:10px;" >Built Using:</summary>
        
@@ -55,9 +55,10 @@ In this journey, gained a lot of fundamental learnings, as one among them,
     - SEO Friendly
     - Dark Mode
     - Fully Static Site
+    - Simplicity
       ```
     </details>
--   ##### [Multi Page Note Taking APP]()
+-   ##### [Note Taking APP](https://notes.onotes.worker.dev)
 
     <details>
       <summary style="font-size:10px;" >Built Using:</summary>
@@ -96,4 +97,4 @@ Robert Nystrom by [crafting interpreters](https://craftinginterpreters.com/conte
 
 ## 👀 Want to learn more?
 
-Feel free to check [portfolio](https://docs.astro.build) or jump to see my [resume](https://astro.build/chat).
+Feel free to check [portfolio](https://q1b.pages.dev) or jump to see my [resume](https://q1b.pages.dev/resume).
