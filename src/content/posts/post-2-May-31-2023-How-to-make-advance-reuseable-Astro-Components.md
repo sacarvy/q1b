@@ -15,7 +15,6 @@ Yet, from first look you may get intution it's not the way!!!
 type Props = { id?: string };
 const { id } = Astro.props;
 ---
-
 {id ? <h1 id={id}> ... </h1> : <h1> ... </h1>}
 ```
 
