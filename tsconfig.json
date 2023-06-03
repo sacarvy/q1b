@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -8,5 +8,15 @@
       ]
     },
     "jsx": "preserve"
-  }
+  },
+  "include": [
+    "src",
+    "astro.config.mjs",
+    ".eslintrc.cjs",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs",
+    "../reset.d.ts",
+    "./tailwind.config.ts"
+  ]
 }

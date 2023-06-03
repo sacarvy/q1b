@@ -1,6 +1,6 @@
 {
   "name": "@q1b/web",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "build:icon": "node ./scripts/icons/index.js",
-    "pages:dev": "wrangler pages dev --compatibility-date=2023-06-01 --proxy 3000 -- astro dev",
+    "pages:dev": "wrangler pages dev --compatibility-date=2023-05-01 --proxy 3000 -- astro dev",
     "pages:deploy": "wrangler pages deploy ./dist",
     "release": "node scripts/release.js"
   },

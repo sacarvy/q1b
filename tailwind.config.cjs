@@ -2,6 +2,28 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const svgToDataUri = require("mini-svg-data-uri");
 
 const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
+const fs = require("fs");
+
+const res = JSON.parse(fs.readFileSync("./styles.json").toString());
+
+const getCls = (/** @type {'button'} */ component) => {
+    const { initial, variant: allVarients } = res[component];
+    const { base, ...variants } = allVarients;
+    let temp = [...initial.split(" "), ...base.split(" ")];
+    /** @type string[] */
+    const variantKeys = Object.keys(variants);
+    for (let index = 0; index < variantKeys.length; index++) {
+        /** @type string */
+        const varient = variantKeys[index];
+        const classes = variants[varient].split(" ");
+        for (let j = 0; j < classes.length; j++) {
+            /** @type string */
+            const cls = classes[j];
+            temp.push(`${varient}:${cls}`);
+        }
+    }
+    return temp;
+};
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

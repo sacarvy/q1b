@@ -1,0 +1,13 @@
+{
+    "button": {
+        "initial": "w-max rounded-md px-2.5 py-1 shadow-sm border [-webkit-tap-highlight-color:transparent;] select-none transition-colors outline-none",
+        "variant": {
+            "base": "bg-white text-slate-600 border-slate-200/75",
+            "hover": "bg-slate-50 text-slate-700 border-slate-300",
+            "focus-visible": "bg-slate-100 text-slate-700 border-slate-300 ring-2 ring-offset-2 ring-offset-white ring-slate-400/60",
+            "active": "bg-slate-200 text-slate-700 border-slate-300",
+            "disabled": "bg-white text-slate-400 border-slate-200"
+        },
+        "combined": "w-max rounded-md px-2.5 py-1 shadow-sm border bg-white text-slate-600 border-slate-200/75 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-300 focus-visible:bg-slate-100 focus-visible:text-slate-700 focus-visible:border-slate-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-slate-400/60 active:bg-slate-200 active:text-slate-700 active:border-slate-300 disabled:bg-white disabled:text-slate-400 disabled:border-slate-200 [-webkit-tap-highlight-color:transparent;] select-none transition-colors outline-none"
+    }
+}

@@ -5,5 +5,21 @@
   "editor.tabSize": 4,
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "node_modules/": true,
+    ".nvmrc": true,
+    ".gitignore": true,
+    "CHANGELOG.md": true,
+    "package-lock.json": true,
+    "svelte.config.mjs": true,
+    ".github": true,
+    ".astro": true,
   }
 }

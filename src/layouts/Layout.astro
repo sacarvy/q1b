@@ -1,7 +1,7 @@
 ---
 import Logo from "~/components/Logo";
 import RollingLabel from "~/components/Footer/rolling_labels.svelte";
-import { LinkIcon, PenIcon } from "~/icons";
+import { LinkIcon } from "~/icons";
 import Wrapper from "~/layouts/Wrapper.astro";
 import siteInfo from "~/site-info";
 import { ThemeButton } from "~/lib/theme";
@@ -33,7 +33,7 @@ const resolvedImage = {
 
 const canonicalURL = new URL(Astro.request.url, Astro.site);
 const currentPage = Astro.url.pathname;
-const GITHUB_EDIT_URL = `https://${pageType === "article" && "pr.new/"}github.com/q1b/q1b/edit/main/src/${
+const GITHUB_EDIT_URL = `https://${pageType === "article" ? "pr.new/" : ""}github.com/q1b/q1b/edit/main/src/${
     pageType === "website" ? "pages" : "content"
 }`;
 
