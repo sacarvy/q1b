@@ -13,7 +13,11 @@ tags: ["astro"]
 
 3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
 
-4. **Adding Cloudflare Pages**: For Deployment using github actions
+4. **Adding Cloudflare Pages**: For Deployment
+
+5. **Using Stackblitz** for quick changes
+
+   
 ## What's next
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
