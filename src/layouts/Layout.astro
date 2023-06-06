@@ -45,11 +45,13 @@ if (fileName && collection && pageType === "article") {
         case "/":
             githubEditUrl += "/index";
             break;
-        case "/posts":
-            githubEditUrl += currentPage + encodeURI("/[...page]");
+        case "/posts/":
+            githubEditUrl += currentPage + encodeURI("[...page]");
             break;
         default:
             githubEditUrl += currentPage;
+            githubEditUrl += '.'
+            githubEditUrl = githubEditUrl.replace('\/\.','')
             break;
     }
     githubEditUrl += ".astro";
