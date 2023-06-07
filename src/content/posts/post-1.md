@@ -1,4 +1,4 @@
----
+t---
 title: "My First Blog Post"
 pubDate: 2023-05-31
 description: "Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website."
@@ -15,7 +15,9 @@ tags: ["astro"]
 
 4. **Adding Cloudflare Pages**: For Deployment
 
-5. **Using Stackblitz** for quick changes
+5. **Registed Custom Domain** on sav.com
+
+6. **Using Stackblitz** for quick changes
 
    
 ## What's next
