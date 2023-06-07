@@ -1,4 +1,4 @@
-t---
+---
 title: "My First Blog Post"
 pubDate: 2023-05-31
 description: "Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website."
