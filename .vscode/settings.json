@@ -15,7 +15,7 @@
     "**/Thumbs.db": true,
     "node_modules/": true,
     ".nvmrc": true,
-    ".gitignore": true,
+    ".gitignore": false,
     "CHANGELOG.md": true,
     "package-lock.json": true,
     "svelte.config.mjs": true,
