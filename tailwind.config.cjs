@@ -51,6 +51,30 @@ module.exports = {
                 mono: "Cascadia Code PL",
                 robotic: "Hubot Sans",
             },
+            typography: (theme) => ({
+                DEFAULT: {
+                    maxWidth: "none",
+                    pre: {
+                        color: theme("colors.slate.50"),
+                        borderRadius: theme("borderRadius.xl"),
+                        padding: theme("padding.5"),
+                        boxShadow: theme("boxShadow.md"),
+                        display: "flex",
+                        marginTop: `${20 / 14}em`,
+                        marginBottom: `${32 / 14}em`,
+                    },
+                    "p + pre": {
+                        marginTop: `${-4 / 14}em`,
+                    },
+                    "pre + pre": {
+                        marginTop: `${-16 / 14}em`,
+                    },
+                    "pre code": {
+                        flex: "none",
+                        minWidth: "100%",
+                    },
+                },
+            }),
         },
     },
     plugins: [
