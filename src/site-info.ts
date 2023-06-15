@@ -28,7 +28,7 @@ const siteInfo = {
     },
     socials: {
         instagram: {
-            href: "https://www.instagram.com/vishnuans/",
+            href: "https://instagram.com/vishnuans?igshid=MzNlNGNkZWQ4Mg==",
             me: "https://www.instagram.com/vishnuans/",
             text: "Checkout instgram page",
             icon: "social/instagram",
