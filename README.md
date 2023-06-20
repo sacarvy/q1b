@@ -38,7 +38,7 @@ In this journey, gained a lot of fundamental learnings, as one among them,
     - Best in-class performance
       ```
     </details>
--   ##### [Portfolio Website](https://q1b.pages.dev)
+-   ##### [Portfolio Website](https://sukhpreet.dev)
     <details>
       <summary style="font-size:10px;" >Built Using:</summary>
        
@@ -97,4 +97,4 @@ Robert Nystrom by [crafting interpreters](https://craftinginterpreters.com/conte
 
 ## 👀 Want to learn more?
 
-Feel free to check [portfolio](https://q1b.pages.dev) or jump to see my [resume](https://q1b.pages.dev/resume).
+Feel free to check [portfolio](https://sukhpreet.dev) or jump to see my [resume](https://sukhpreet.dev/resume).
