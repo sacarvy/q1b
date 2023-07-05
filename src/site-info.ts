@@ -21,7 +21,7 @@ const siteInfo = {
     name: "q1b a.k.a Sukhpreet Singh",
     title: "q1b a.k.a Sukhpreet Singh",
     description:
-        "Digital Open Home of Sukhpreet Singh aka `q1b` to bring forth the thoughts and share the learnings back to developers.",
+        "Digital Open Home of Sukhpreet Singh a.k.a `q1b` to bring forth the thoughts and share the learnings back to developers.",
     image: {
         src: "/og/default.jpg",
         alt: "Build the web you want",

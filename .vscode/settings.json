@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "git.enabled": false,
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
