@@ -1,7 +1,7 @@
 ---
 import Logo from "~/components/Logo";
 import RollingLabel from "~/components/Footer/rolling_labels.svelte";
-import { LinkIcon } from "~/ui/icons";
+import LinkIcon from "~/ui/icons/LinkIcon.astro";
 import Wrapper from "~/layouts/Wrapper.astro";
 import siteInfo from "~/site-info";
 import { ThemeButton } from "~/lib/theme";
@@ -127,7 +127,7 @@ if (fileName && collection && pageType === "article") {
                             class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                             title="Link to Learnings"
                         >
-                            Posts <LinkIcon client:idle />
+                            Posts <LinkIcon />
                         </a>
                     </li>
                     <li>
@@ -136,7 +136,7 @@ if (fileName && collection && pageType === "article") {
                             class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                             title="Link to Resume"
                         >
-                            Resume <LinkIcon client:idle />
+                            Resume <LinkIcon />
                         </a>
                     </li>
                     <li>
@@ -145,7 +145,7 @@ if (fileName && collection && pageType === "article") {
                             class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                             title="beautiful wallpapers"
                         >
-                            Wallpapers <LinkIcon client:idle />
+                            Wallpapers <LinkIcon />
                         </a>
                     </li>
                 </ul>
@@ -171,7 +171,7 @@ if (fileName && collection && pageType === "article") {
                                         title={`external link to ${key}`}
                                         class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                                     >
-                                        {key} <LinkIcon client:idle />
+                                        {key} <LinkIcon />
                                     </a>
                                 </li>
                             );

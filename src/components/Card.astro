@@ -1,5 +1,5 @@
 ---
-import { LinkIcon } from "~/ui/icons";
+import LinkIcon from '~/ui/icons/LinkIcon.astro';
 
 export interface Props {
     url: string;
@@ -34,7 +34,7 @@ function formatDate(date: Date) {
         class="p-4 cursor-pointer group rounded-xl backdrop-blur-md backdrop-saturate-150 shadow-glass shadow-slate-200/10 dark:shadow-slate-800/10 bg-slate-200 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
     >
         <div class="absolute top-4 right-4">
-            <LinkIcon basic class="text-slate-900 dark:text-white" client:idle />
+            <LinkIcon class="text-slate-900 dark:text-white" />
         </div>
         <dl>
             <dt class="sr-only">Published On</dt>

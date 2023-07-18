@@ -24,8 +24,7 @@ export default defineConfig({
     vite: {
         plugins: [
             Icons({
-                compiler: 'jsx',
-                jsx: 'react',
+                compiler: 'astro',
                 // experimental
                 autoInstall: true,
             }),

@@ -30,6 +30,9 @@ export const ThemeButton = (props: { size?: number }) => {
 
   onMount(() => {
     setTheme("value", getColorPreference());
+    const UA = navigator.userAgent;
+    const isSafari = !UA.includes('Chrome') && UA.includes('Safari')
+    if(isSafari) localStorage.setItem('browser','safari')
     // window.onload = () => {
     // 	reflectPreference()
     // }
@@ -52,6 +55,7 @@ export const ThemeButton = (props: { size?: number }) => {
     if (localStorage.getItem(storageKey) !== theme.value) {
       localStorage.setItem(storageKey, theme.value);
       reflectPreference();
+      if(localStorage.getItem('browser') === 'safari') location.reload()
     }
   });
   return (

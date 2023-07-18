@@ -33,6 +33,7 @@ module.exports = {
         "./src/layouts/*.astro",
         "./src/icons/index.tsx",
         "./src/components/**/*.{svelte,astro,tsx}",
+        "./src/ui/icons/*.astro",
         "./src/pages/**/*.astro",
     ],
     theme: {
