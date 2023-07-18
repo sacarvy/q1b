@@ -1,32 +1,12 @@
 {
-  "editor.formatOnSave": true,
-  "git.enabled": true,
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "editor.trimAutoWhitespace": true,
-  "editor.insertSpaces": false,
-  "editor.tabSize": 4,
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "node_modules/": true,
-    ".nvmrc": true,
-    ".gitignore": false,
-    "CHANGELOG.md": true,
-    "package-lock.json": true,
-    "svelte.config.mjs": true,
-    ".github": true,
-    ".astro": true,
-  }
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ]
 }
