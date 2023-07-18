@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
 import Icons from "unplugin-icons/vite";
 import solidJs from "@astrojs/solid-js";
+import react from "@astrojs/react";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -15,6 +16,7 @@ export default defineConfig({
                 applyBaseStyles: false,
             },
         }),
+        react(),
         svelte(),
         solidJs(),
         sitemap(),
