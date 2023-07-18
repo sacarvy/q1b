@@ -30,6 +30,8 @@
     "@iconify-json/fluent": "^1.1.22",
     "@iconify-json/heroicons-outline": "^1.1.6",
     "@iconify-json/heroicons-solid": "^1.1.7",
+    "@svgr/core": "^8.0.0",
+    "@svgr/plugin-jsx": "^8.0.1",
     "@tailwindcss/typography": "^0.5.9",
     "@typescript-eslint/parser": "^6.1.0",
     "clsx": "^1.2.1",
@@ -44,9 +46,5 @@
     "semver": "^7.5.1",
     "tailwind-merge": "^1.12.0",
     "unplugin-icons": "^0.16.1"
-  },
-  "prettier": {
-    "printWidth": 120,
-    "tabWidth": 4
   }
 }
