@@ -2,6 +2,10 @@
 dist/
 .output/
 
+# next.js
+.next/
+/out/
+
 # generated types
 .astro/
 
@@ -20,3 +24,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

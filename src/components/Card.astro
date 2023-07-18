@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import LinkIcon from '~/ui/icons/LinkIcon.astro';
 
 export interface Props {
@@ -6,7 +7,7 @@ export interface Props {
     title: string;
     description: string;
     publishedOn: string;
-    tags: string[];
+    tags: {id:string}[];
 }
 
 const { title, description, publishedOn, url, tags } = Astro.props as Props;
@@ -17,6 +18,8 @@ function formatDate(date: Date) {
         dateStyle: "long",
     }).format(date);
 }
+const getTagName = async (id:string) => (await getEntry('tags',id))?.data?.name as string
+const tagnames = await Promise.all(tags.map((tag) => getTagName(tag.id)))
 ---
 
 <a href={url} class="relative w-full max-w-4xl">
@@ -51,7 +54,7 @@ function formatDate(date: Date) {
         </p>
         <div class="inline-flex gap-x-3 items-center">
             {
-                tags.map((tag) => (
+                tagnames.map((tag) => (
                     <span class="px-2 bg-black/20 shadow dark:bg-white/20 text-white rounded-lg py-0.5 leading-4 text-xs xs:text-base md:text-lg">
                         {tag}
                     </span>
