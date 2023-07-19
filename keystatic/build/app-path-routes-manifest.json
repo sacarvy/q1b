@@ -1,0 +1,6 @@
+{
+  "/page": "/",
+  "/[slug]/page": "/[slug]",
+  "/keystatic/[[...params]]/page": "/keystatic/[[...params]]",
+  "/api/keystatic/[...params]/route": "/api/keystatic/[...params]"
+}
