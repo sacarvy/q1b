@@ -1,0 +1,73 @@
+---
+title: Advance Reusable Astro Components using TypeScript
+description: >-
+  Perfect Pattern to built reusable component with typescript support, with few
+  lines of code
+pubDate: '2023-06-01'
+tags:
+  - astro
+---
+## How would you add a **id** prop conditionally in Astro
+
+In below example we are conditionally rendering the html based on id prop undefined or present. Yet, from first look you may get intuition it's not the way!!!
+
+```
+---
+type Props = { id?: string };
+const { id } = Astro.props;
+---
+{id ? <h1 id={id}> ... </h1> : <h1> ... </h1>}
+```
+
+Problems such as adding more props like **class**, **style** you can't go on checking conditionally, so just let see how can we solve this issue,
+
+## Using HTMLAttributes from **astro/types**
+
+Below, snippet just provides us the HTMLAttributes type for **h1** and we used spread operator instead of doing `class={class}` or `style={style}` in pretty shorthand syntax.
+
+```
+---
+import type { HTMLAttributes } from "astro/types";
+export type Props = HTMLAttributes<"h1">;
+---
+<h1 {...Astro.props}>...</h1>
+```
+
+Yet, another problem which you might face is Astro by default binds the **slot** type with HTMLAttributes which is not needed So, we can fine tune it By using **Omit**
+
+```
+---
+import type { HTMLAttributes } from "astro/types";
+export type Props = Omit<HTMLAttributes<"h2">, "slot">;
+---
+<h1 {...Astro.props}>...</h1>
+```
+
+Okay, Bonus tip do you want to use **tailwindcss** without duplicating the styles in your reusable component use [tailwind-merge](https://github.com/dcastil/tailwind-merge) for solving duplicate classes issue.
+
+install tailwind-merge
+
+```
+# npm
+npm i -D tailwind-merge
+# pnpm
+pnpm i -D tailwind-merge
+# yarn
+yarn add -D tailwind-merge
+```
+
+Now, Import it into your file
+
+```
+---
+import type { HTMLAttributes } from "astro/types";
+import { twMerge } from "tailwind-merge";
+export type Props = Omit<HTMLAttributes<"h1">, "slot">;
+const { class: className, ...attrs } = Astro.props;
+---
+<h1 class={twMerge("font-bold text-2xl dark:text-white text-slate-800", className)} {...attrs}>
+    <slot />
+</h1>
+```
+
+Use Reusable component in your codebase with ease

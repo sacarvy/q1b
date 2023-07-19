@@ -3,11 +3,6 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import siteInfo from "../site-info";
 
-function formatDate(date: Date) {
-    date.setUTCHours(0);
-    return date;
-}
-
 export const get: APIRoute = async (context) => {
     const posts = await getCollection("posts");
 
@@ -22,7 +17,7 @@ export const get: APIRoute = async (context) => {
             title: item.data.title,
             description: item.data.description,
             link: `/blog/${item.slug}/`,
-            pubDate: formatDate(item.data.pubDate),
+            pubDate: item.data.pubDate,
         })),
     });
 };
