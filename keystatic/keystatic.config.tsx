@@ -1,9 +1,18 @@
 import { config, collection, singleton, fields } from '@keystatic/core';
+import type { LocalConfig, GitHubConfig } from '@keystatic/core'
 
+export const storage: LocalConfig['storage'] | GitHubConfig['storage'] =
+  process.env.NODE_ENV === 'development'
+    ? { kind: 'local' }
+    : {
+        kind: 'github',
+        repo: {
+          owner: 'q1b',
+          name: 'q1b',
+        },
+      }
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage,
   singletons: {
     siteInfo: singleton({
       label: 'Site Info',
