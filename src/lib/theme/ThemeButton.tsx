@@ -54,8 +54,10 @@ export const ThemeButton = (props: { size?: number }) => {
   createEffect(() => {
     if (localStorage.getItem(storageKey) !== theme.value) {
       localStorage.setItem(storageKey, theme.value);
-      reflectPreference();
-      if(localStorage.getItem('browser') === 'safari') location.reload()
+      if(localStorage.getItem('browser') === 'safari') 
+        location.reload()
+      else
+        reflectPreference();
     }
   });
   return (
