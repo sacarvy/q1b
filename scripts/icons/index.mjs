@@ -1,17 +1,21 @@
-import { buildMaterial } from "./buildFile.mjs"
-import {  join } from "path"
-import {template } from "./template.mjs"
-
-// Thing on Using YAML
-// const YAML = require("yaml")
-// const file = fs.readFileSync("./file.yml", "utf8")
-// YAML.parse(file)
+import { writeFile, mkdir, open } from "node:fs/promises"
+import { prepareAstroComponent } from "./template.mjs"
 
 const RequiredIcons = [
 	{
 		outline: "fluent:person-48-regular",
 		solid: "fluent:person-48-filled",
 		name: "Profile",
+	},
+		{
+		outline: "heroicons:arrow-left",
+		solid: "heroicons:arrow-left-solid",
+		name: "ArrowLeft"
+	},
+	{
+		outline: "heroicons:arrow-right",
+		solid: "heroicons:arrow-right-solid",
+		name: "ArrowRight"
 	},
 	{
 		outline: "fluent:pen-48-regular",
@@ -94,23 +98,12 @@ const RequiredIcons = [
 	},
 ];
 
-let preFile = `
-import * as React from 'react';
-import type {
-  PropsWithoutRef,
-  SVGProps,
-  RefAttributes,
-  ReactSVGElement
-} from 'react';
-import { ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-`;
-
-RequiredIcons.forEach((detail) => (preFile += template(detail)));
-const getName = () => '../../src/ui/' + 'icons' + '.tsx'
-const pathname = (new URL(getName(),import.meta.url)).pathname;
-
-buildMaterial(pathname, preFile);
+const getName = (name) => '../../src/ui/icons/' + name + 'Icon' + '.astro'
+RequiredIcons.forEach(async (detail) => {
+	const component = prepareAstroComponent(detail);
+	const pathname = new URL(getName(detail.name),import.meta.url)
+	await writeFile(pathname, component, {
+		flag: 'a+',
+		encoding: 'utf-8',
+	})
+});

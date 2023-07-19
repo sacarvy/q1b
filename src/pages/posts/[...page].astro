@@ -1,5 +1,6 @@
 ---
-import type { GetStaticPathsOptions } from "astro";
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import Card from "~/components/Card.astro";
 import Default from "~/layouts/Layout.astro";
@@ -7,9 +8,13 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const postEntries = await getCollection("posts");
 
     let pg = paginate(postEntries, { pageSize: 3 });
+    // @ts-ignore
     return [{ params: { page: undefined }, props: pg[0].props }, ...pg];
 }
-const { page } = Astro.props;
+
+const { page } = Astro.props as {
+    page:Page<CollectionEntry<'posts'>>
+};
 ---
 
 <Default title="All Posts" description="All of your post are shown here">
@@ -22,7 +27,7 @@ const { page } = Astro.props;
         </p>
         <ul class="flex flex-col gap-y-12 mb-4">
             {
-                page.data.map((post, index) => {
+                page.data.map((post) => {
                     return (
                         <li>
                             <Card
@@ -30,7 +35,7 @@ const { page } = Astro.props;
                                 description={post.data.description}
                                 publishedOn={post.data.pubDate}
                                 tags={post.data.tags}
-                                url={"/posts/post/" + `${index + 1}/`}
+                                url={"/posts/post/" + `${post.slug}/`}
                             />
                         </li>
                     );

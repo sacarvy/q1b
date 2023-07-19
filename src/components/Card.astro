@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import { LinkIcon } from '~/ui/icons';
+import LinkIcon from '~/ui/icons/LinkIcon.astro'
 
 export interface Props {
     url: string;
@@ -37,7 +37,7 @@ const tagnames = await Promise.all(tags.map((tag) => getTagName(tag.id)))
         class="p-4 cursor-pointer group rounded-xl backdrop-blur-md backdrop-saturate-150 bg-white shadow-md dark:shadow-inner shadow-slate-500/10 border border-transparent hover:border-blue-400/50 dark:bg-slate-800 transition-colors"
     >
         <div class="absolute top-4 right-4">
-            <LinkIcon client:only="react" className="text-slate-900 dark:text-white" />
+            <LinkIcon class="text-slate-900 dark:text-white" />
         </div>
         <dl>
             <dt class="sr-only">Published On</dt>
