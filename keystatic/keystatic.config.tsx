@@ -7,7 +7,7 @@ export default config({
   singletons: {
     siteInfo: singleton({
       label: 'Site Info',
-      path: 'src/content/site-info',
+      path: 'src/content/site/info',
       schema: {
         title: fields.text({ label: 'Title' }),
         description: fields.text({ label: 'Description', multiline: true }),

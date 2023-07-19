@@ -1,6 +1,6 @@
-const fs = require("node:fs");
+import fs from "node:fs"
 
-function buildMaterial(path, gr) {
+export function buildMaterial(path, gr) {
     // console.log(gr);
     fs.writeFileSync(path, "", function (err, data) {
         if (err) {
@@ -27,5 +27,3 @@ function buildMaterial(path, gr) {
         }
     });
 }
-
-module.exports = buildMaterial;

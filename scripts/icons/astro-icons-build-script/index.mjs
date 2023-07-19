@@ -1,11 +1,5 @@
-const buildMaterial = require("./build/index.cjs");
-const { join } = require("path");
-const template = require("./utils/index.cjs");
-
-// Thing on Using YAML
-// const YAML = require("yaml")
-// const file = fs.readFileSync("./file.yml", "utf8")
-// YAML.parse(file)
+import { writeFile, mkdir, open } from "node:fs/promises"
+import { prepareAstroComponent } from "./template.mjs"
 
 const RequiredIcons = [
 	{
@@ -94,21 +88,12 @@ const RequiredIcons = [
 	},
 ];
 
-let preFile = `
-import * as React from 'react';
-import type {
-  PropsWithoutRef,
-  SVGProps,
-  RefAttributes,
-  ReactSVGElement
-} from 'react';
-import { ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-`;
-
-RequiredIcons.forEach((detail) => (preFile += template(detail)));
-
-buildMaterial(join(__dirname, "../", "../", "src", "ui", "icons.tsx"), preFile);
+const getName = (name) => '../../src/ui/icons/' + name + 'Icon' + '.astro'
+RequiredIcons.forEach(async (detail) => {
+	const component = prepareAstroComponent(detail);
+	const pathname = new URL(getName(detail.name),import.meta.url)
+	await writeFile(pathname, component, {
+		flag: 'a+',
+		encoding: 'utf-8',
+	})
+});

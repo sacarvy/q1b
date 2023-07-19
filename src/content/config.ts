@@ -20,8 +20,27 @@ const tags = defineCollection({
   })
 });
 
+const site = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: z.object({
+      url: z.string(),
+      altText: z.string()
+    }).optional(),
+    social: z.array( z.object({
+        platform: z.string(),
+        label: z.string(),
+        link: z.string(),
+    })
+      )
+    })
+  })
+
 // Export a single `collections` object to register your collection(s)
 export const collections = {
     posts,
-    tags
+    tags,
+    site
 };

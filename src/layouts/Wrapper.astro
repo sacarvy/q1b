@@ -1,6 +1,6 @@
 ---
 // import TailwindcssIndicator from "~/components/tailwindcss-indicator.astro";
-import PenIcon from "~/ui/icons/PenIcon.astro";
+import { PenIcon } from "~/ui/icons";
 import "~/styles/global.css";
 export type Image = {
     src: string;
@@ -170,7 +170,7 @@ const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/,
                     target="_blank"
                     class="group dark:text-white text-blue-500 fixed bottom-4 right-4"
                 >
-                    <PenIcon />
+                    <PenIcon client:only="react" />
                 </a>
             )
         }
