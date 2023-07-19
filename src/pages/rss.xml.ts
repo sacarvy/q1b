@@ -13,10 +13,10 @@ export const get: APIRoute = async (context) => {
         description: siteInfo.description,
         site: context.site!.href,
         // The list of items for your RSS feed, sorted.
-        items: posts.map((item) => ({
+        items: posts.map((item,index) => ({
             title: item.data.title,
             description: item.data.description,
-            link: `/blog/${item.slug}/`,
+            link: `/posts/post/${index+1}`,
             pubDate: item.data.pubDate,
         })),
     });
