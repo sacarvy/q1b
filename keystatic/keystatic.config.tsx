@@ -121,6 +121,62 @@ export default config({
         }),
       },
     }),
+    work: collection({
+      label: 'Experience',
+      path: 'src/content/work/*',
+      slugField: 'role',
+      format: { contentField: 'content' },
+      schema: {
+        role: fields.slug({name:{label:'Role'}}),
+        employment_type: fields.select({
+          label: 'Employment Type',
+          options: [
+            { label: 'Full time', value: 'full-time' },
+            { label: 'Part time', value: 'part-time' },
+            { label: 'Self-employed', value: 'self-employed' },
+            { label: 'Freelance', value: 'freelance' },
+            { label: 'Internship', value: 'internship' },
+            { label: 'Trainee', value: 'trainee' },
+          ],
+          defaultValue: 'self-employed'
+        }),
+        company: fields.object({
+          name: fields.text({label:'Company Name'}),
+          site: fields.url({label:'Company Website'}),
+          location: fields.text({label:'Company Location'})
+        }),
+        startDate: fields.date({
+          label: "Start Date",
+          description: "Your Date of joining the Company",
+        }),
+        endDate: fields.conditional( 
+          fields.checkbox({
+            label:'currently working in this company',
+            defaultValue: false
+          }),
+          {
+            true:fields.empty(),
+            false:fields.date({
+              label: "End Date",
+              description: "Your Date of leaving the Company",
+            })
+          }
+        ),
+        documents: fields.file({
+          label: "Documents",
+          description: "Any Documents as Letter of Recommandation or Certificates",
+          directory: 'public/documents/',
+          publicPath: '/documents/',
+        }),
+        summary: fields.document({
+          label: 'Your Summary of the Work',
+          formatting: true,
+          dividers: true,
+          links: true,
+          images: true,
+        }),
+      }
+    }),
     projects: collection({
       label: 'Projects',
       path: 'src/content/projects/*',
