@@ -93,6 +93,7 @@ export default config({
           dividers: true,
           links: true,
           images: true,
+          tables: true,
         }),
       },
     }),
@@ -125,7 +126,7 @@ export default config({
       label: 'Experience',
       path: 'src/content/work/*',
       slugField: 'role',
-      format: { contentField: 'content' },
+      format: { contentField: 'summary' },
       schema: {
         role: fields.slug({name:{label:'Role'}}),
         employment_type: fields.select({
