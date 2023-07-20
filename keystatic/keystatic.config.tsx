@@ -89,6 +89,19 @@ export default config({
         }),
       },
     }),
+    categories: collection({
+      label: 'Categories',
+      path: 'src/content/categories/*',
+      slugField: 'name',
+      schema: {
+        name: fields.slug({
+          name: {
+            label: 'Name',
+          },
+        }),
+        description: fields.text({label:'Description',multiline:true})
+      },
+    }),
     tags: collection({
       label: 'Tags',
       path: 'src/content/tags/*',
