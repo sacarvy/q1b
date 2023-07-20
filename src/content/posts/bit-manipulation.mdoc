@@ -1,0 +1,159 @@
+---
+title: Bit Manipulation
+description: >-
+  Arithmetic Operation Over Binary numbers, pretty basic but yup! useful to
+  understand and fun to showoff. Nothing Space Rocket, Just Something from
+  without which our computer couldn't able to work with underlying transistors
+pubDate: '2022-11-03'
+category: system-programming
+tags: []
+---
+## Binary Numbers
+
+### How I understood binary numbers ?
+
+Just 0s and 1s, it's how computer understand and communicate to underlying computer's circuitry of transistors, but we as human made programming languages So, that we don't have to write and deal with underlying 0s and 1s.
+
+> If last digit of a binary number **ends with 0** that means it's ***divisible by 2*** Ex: 1101 represents 13 which is not divisible by 2; 10010 represents 18 which is divisible by 2;
+
+### Binary arithmetic
+
+Addition, subtraction, multiplication, and division can be performed on binary numerals.
+
+So, you can approach this with two ways:-
+
+1. Converting `binary numbers` to `decimal numbers` then, apply arithmetic operation then convert it to binary number.
+1. Directly Apply operation onto `binary numbers`
+
+#### Logic behind Binary numbers
+
+1101 (13) 1 × 2³(8) + 1 × 2²(4) + 0 × 2¹(2) + 1 × 2⁰(1) = 13
+
+So, If we break above part it's `digit × (2^digit_position)`
+
+#### Addition
+
+Addition is kind of simplest arithmetic to learn as a kid, same here it simplest one among all for you as well.
+
+Adding two single-digit binary numbers is relatively simple,
+
+- 0 + 0 → 0
+- 0 + 1 → 1
+- 1 + 0 → 1
+- 1 + 1 → 0, carring 1 ahead
+
+Another Example,
+
+```
+  1 1 1 1 1    (carried digits)
+    0 1 1 1 1 = 15
++   1 0 1 1 1 = 23
+------------------
+= 1 0 0 1 1 0 = 38
+```
+
+#### Subtraction
+
+I am also not good at it, but still good to notedown it.
+
+- 0 – 0 = 0
+- 0 – 1 equals to 1 along with 1 as a borrow
+- 1 – 0 = 1
+- 1 – 1 = 0
+
+Example
+
+```
+    0 1 0 0 0 1 0 = 34
+-   0 0 0 1 0 1 0 = 10
+------------------
+=   0 0 1 1 0 0 0 = 24
+```
+
+#### Multiplication
+
+Only 0 and 1 digits are present in binary number system instead of our daily life number which consist of 0,1...9 So there are only two possible outcomes of each partial multiplication:
+
+- If the digit is 0, the partial product is also 0
+- If the digit is 1, the partial product is same to the multipled number
+
+Example
+
+```
+          1 1 0 1 = 13
+        × 1 0 1 0 = 10
+        ---------
+          0 0 0 0 <- rightmost 'zero' multiplied with `1 1 0 1`
++       1 1 0 1 <- next 'one' multiplied with `1 1 0 1`
++     0 0 0 0 <- next 'zero' multiplied with `1 1 0 1`
++   1 1 0 1 <- next 'one' multiplied with `1 1 0 1`
+---------------
+= 1 0 0 0 0 0 1 0 = 130
+```
+
+#### Division
+
+**Long division** in binary number system is again similar to its decimal counterpart.
+
+Example
+
+```
+/*
+  Credit https://en.wikipedia.org/wiki/Binary_number
+  101 (5) is divisor
+  11011 (27) is dividend
+*/
+// In Step 1
+              1
+        ___________
+1 0 1   ) 1 1 0 1 1
+        − 1 0 1
+          -----
+          0 0 1
+// In Step 2
+             1 0 1
+       ___________
+1 0 1  ) 1 1 0 1 1
+       − 1 0 1
+         -----
+             1 1 1
+         −   1 0 1
+             -----
+             0 1 0
+```
+
+> you can prefix a 101 with `0b` which will make your programming language understand that it's a binary number, and you will see `5`*is what understood by your program* instead of `101` and it works just by prefixing `0b` else google it 😉.
+
+## Bitwise Operators
+
+There are 7 operators to perform bit-level operations in JavaScript.
+
+{% table %}
+---
+- Bitwise Operator
+- Description
+---
+- `Bitwise OR (\|)`
+- The bitwise OR operator (|) returns a 1 in each bit position for which the corresponding bits of either or both operands are 1s
+---
+- `Bitwise AND (&)`
+- The bitwise AND operator (&) returns a 1 in each bit position for which the corresponding bits of both operands are 1s
+---
+- `Bitwise XOR (^)`
+- The bitwise XOR operator (^) returns a 1 in each bit position for which the corresponding bits of either but not both operands are 1s
+---
+- `Bitwise Complement (~)`
+- inverts the bits of its operand
+---
+- Bitwise Shift Operator
+- Description
+---
+- `Left Shift Operator (<<)`
+- The left shift operator (`<<`) shifts the first operand the specified number of bits, modulo 32, to the left. Excess bits shifted off to the left are discarded. Zero bits are shifted in from the right
+---
+- `Signed Right Shift (>>)`
+- 
+---
+- `Unsigned Right Shift (>>>)`
+- 
+{% /table %}
