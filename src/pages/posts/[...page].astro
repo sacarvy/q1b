@@ -6,7 +6,7 @@ import Card from "~/components/Card.astro";
 import Default from "~/layouts/Layout.astro";
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const postEntries = await getCollection("posts");
-
+    postEntries.sort((a,b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
     let pg = paginate(postEntries, { pageSize: 3 });
     // @ts-ignore
     return [{ params: { page: undefined }, props: pg[0].props }, ...pg];
