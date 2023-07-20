@@ -3,9 +3,10 @@ import Logo from "~/components/Logo";
 import RollingLabel from "~/components/Footer/rolling_labels.svelte";
 import LinkIcon from "~/ui/icons/LinkIcon.astro";
 import Wrapper from "~/layouts/Wrapper.astro";
-import siteInfo from "~/site-info";
 import { ThemeButton } from "~/lib/theme";
 import { cn } from "~/lib/utils";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export type Props = {
     title?: string;
@@ -16,6 +17,9 @@ export type Props = {
     fileName?: string;
 };
 
+const siteInfo = ((await getCollection('sites')).find((site) => site.id === 'default') as CollectionEntry<'sites'>).data;
+const socials = ((await getCollection('socials'))[0] as CollectionEntry<'socials'>).data;
+
 const {
     title = siteInfo.title,
     description = siteInfo.description,
@@ -24,6 +28,7 @@ const {
     collection,
     fileName,
 } = Astro.props;
+
 const twitterHandle = "uniuwe";
 const rotatings = ["Yoga Instructor", "Software Developer", "Basketball Player", "Content Creator"];
 const resolvedImage = {
@@ -60,7 +65,7 @@ if (fileName && collection && pageType === "article") {
 
 <Wrapper
     class="px-4 py-6"
-    name={siteInfo.name}
+    name={siteInfo.title}
     title={title}
     description={description}
     theme={"#1e293b"}
@@ -161,17 +166,16 @@ if (fileName && collection && pageType === "article") {
                     class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
                 >
                     {
-                        Object.keys(siteInfo.socials).map((key: string) => {
-                            const platform = siteInfo.socials[key as "github" | "instagram" | "twitter"];
+                        socials.data.map(({ platform, link }) => {
                             return (
                                 <li>
                                     <a
-                                        href={platform.href}
+                                        href={link}
                                         target="_blank"
-                                        title={`external link to ${key}`}
+                                        title={`external link to ${platform}`}
                                         class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
                                     >
-                                        {key} <LinkIcon  />
+                                        {platform} <LinkIcon  />
                                     </a>
                                 </li>
                             );

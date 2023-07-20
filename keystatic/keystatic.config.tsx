@@ -11,26 +11,15 @@ export const storage: LocalConfig['storage'] | GitHubConfig['storage'] =
           name: 'q1b',
         },
       }
+
 export default config({
   storage,
   singletons: {
-    siteInfo: singleton({
-      label: 'Site Info',
-      path: 'src/content/site/info',
+    socials: singleton({
+      label: "Social Media Links",
+      path: 'src/content/socials/data',
       schema: {
-        title: fields.text({ label: 'Title' }),
-        description: fields.text({ label: 'Description', multiline: true }),
-        image: fields.object({
-          url: fields.image({
-            label: 'Open Graph Image',
-            directory: 'public/images/og',
-            description: 'Open Graph Images are used for SEO',
-            publicPath: '/images/og/',
-            validation: { isRequired: true },
-          }),
-          altText: fields.text({ label: 'Alt Text' }),
-        }),
-        social: fields.array(
+        data: fields.array(
           fields.object({
             platform: fields.text({
               label: 'Platform',
@@ -43,11 +32,31 @@ export default config({
             label: 'Social Platform',
             itemLabel: (props) =>`${props.fields.platform.value} | ${props.fields.label.value}`,
           }
-        ),
-      },
-    }),
+        ),    
+      }
+    })
   },
   collections: {
+    sites: collection({
+      label: 'Sites',
+      path: 'src/content/sites/*',
+      slugField: 'name',
+      schema: {
+        name: fields.slug({name:{ label: 'Name' }}),
+        title: fields.text({label: "Title"}),
+        description: fields.text({ label: 'Description', multiline: true }),
+        image: fields.object({
+          src: fields.image({
+            label: 'Open Graph Image',
+            directory: 'public/og',
+            description: 'Open Graph Images are used for SEO',
+            publicPath: '/og/',
+            validation: { isRequired: true },
+          }),
+          alt: fields.text({ label: 'Alt Text' }),
+        }),
+      },
+    }),
     posts: collection({
       label: 'Posts',
       slugField: 'title',
@@ -163,12 +172,22 @@ export default config({
             })
           }
         ),
-        documents: fields.file({
-          label: "Documents",
-          description: "Any Documents as Letter of Recommandation or Certificates",
-          directory: 'public/documents/',
-          publicPath: '/documents/',
-        }),
+        documents: fields.array(
+          fields.object({
+            document: fields.file({
+              label: "Documents",
+              description: "Any Documents as Letter of Recommandation or Certificates",
+              directory: 'public/documents/',
+              publicPath: '/documents/',
+              validation: {isRequired:true}
+            }),
+            label: fields.text({label:"Label"}),
+          }),
+          {
+            label: 'Documents',
+            itemLabel: (props) =>`${props.fields.label.value}`,
+          }
+        ),
         summary: fields.document({
           label: 'Your Summary of the Work',
           formatting: true,

@@ -27,6 +27,7 @@ const tags = defineCollection({
     name: z.string()
   })
 });
+
 const work = defineCollection({
   type: 'content',
   schema: z.object({
@@ -37,21 +38,32 @@ const work = defineCollection({
       site: z.string(),
       location: z.string()
     }),
+    documents: z.array(z.object({
+      document: z.string(),
+      label: z.string()
+    })),
     startDate: z.string(),
     endDate: z.any(),
   })
 })
 
-const site = defineCollection({
+const sites = defineCollection({
   type: 'data',
   schema: z.object({
+    name: z.string(),
     title: z.string(),
     description: z.string(),
     image: z.object({
-      url: z.string(),
-      altText: z.string()
-    }).optional(),
-    social: z.array(z.object({
+      src: z.string(),
+      alt: z.string()
+    }),
+  })
+})
+
+const socials = defineCollection({
+  type: 'data',
+  schema: z.object({ 
+    data: z.array(z.object({
       platform: z.string(),
       label: z.string(),
       link: z.string(),
@@ -65,6 +77,11 @@ export const collections = {
   posts,
   categories,
   tags,
-  site,
-  work
+  sites,
+  work,
+  socials,
 };
+
+export const data = {
+  socials
+}
