@@ -67,6 +67,13 @@ export default config({
           directory: 'public/images/posts',
           publicPath: '/images/posts/',
         }),
+        category: fields.relationship({
+            label: 'Category',
+            collection: 'categories',
+            validation: {
+              isRequired: true,
+            },
+        }),
         tags: fields.array(
           fields.relationship({
             label: 'Tag',
