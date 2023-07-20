@@ -3,7 +3,8 @@
     "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
     "esbenp.prettier-vscode",
-    "antfu.iconify"
+    "antfu.iconify",
+    "mohitsingh.markdoc"
   ],
   "unwantedRecommendations": []
 }
