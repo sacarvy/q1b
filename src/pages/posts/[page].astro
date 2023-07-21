@@ -1,0 +1,52 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Card from "~/components/Card.astro";
+import Default from "~/layouts/Layout.astro";
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const postEntries = await getCollection("posts");
+    postEntries.sort((a,b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
+    console.log(paginate(postEntries, { pageSize: 3 }))
+
+    return paginate(postEntries, { pageSize: 3 })
+}
+
+const { page } = Astro.props as {
+    page:Page<CollectionEntry<'posts'>>
+};
+console.log(Astro.params)
+---
+
+<Default title="All Posts" description="All of your post are shown here">
+    <main class="max-w-3xl mt-16 mb-24 w-full">
+        <h1 class="text-4xl dark:text-white text-indigo-600 mb-8 font-semibold">Writings</h1>
+        <p class="text-lg text-slate-600 font-medium dark:text-slate-200 mb-12">
+            Usually not a great writer, yet since it's one of the way to expression yourself, share your <span
+                class="inline-block px-2 py-0.5 bg-indigo-500 text-white font-bold rounded-md">learnings</span
+            > and thoughts with the whole world.
+        </p>
+        <ul class="flex flex-col gap-y-12 mb-4">
+            {
+                page.data.map((post) => {
+                    return (
+                        <li>
+                            <Card
+                                title={post.data.title}
+                                description={post.data.description}
+                                publishedOn={post.data.pubDate}
+                                tags={post.data.tags}
+                                url={"/posts/post/" + `${post.slug}/`}
+                            />
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        <div class="flex items-center justify-center gap-x-2 dark:text-white mt-6">
+            {page.url.prev && <a href={page.url.prev}>Previous</a>}
+            {page.url.prev && page.url.next && <span> | </span>}
+            {page.url.next && <a href={page.url.next}>Next</a>}
+        </div>
+    </main>
+</Default>

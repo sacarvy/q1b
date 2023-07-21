@@ -1,19 +1,33 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import Card from "~/components/Card.astro";
 import Default from "~/layouts/Layout.astro";
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const postEntries = await getCollection("posts");
+
+export async function getStaticPaths( { paginate }: GetStaticPathsOptions ) {
+    const [postEntries, tagEntries] = await Promise.all([getCollection("posts"), getCollection("tags")]);
     postEntries.sort((a,b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
-    let pg = paginate(postEntries, { pageSize: 3 });
-    // @ts-ignore
-    return [{ params: { page: undefined }, props: pg[0].props }, ...pg];
+
+    return tagEntries.map((tag) => {
+            const filteredPosts = postEntries.filter((post) => {
+                for (let index = 0; index < post.data.tags.length; index++) {
+                    if(post.data.tags[index]?.id === tag.id) return true;
+                }
+                return false;
+            });
+            console.log(filteredPosts)
+            return paginate(
+                        filteredPosts, 
+                        {
+                            params: { tag:tag.id },
+                            pageSize: 3
+                        }
+                    );
+    });
 }
 
 const { page } = Astro.props as {
-    page:Page<CollectionEntry<'posts'>>
+    page: Page<CollectionEntry<'posts'>>
 };
 ---
 

@@ -1,0 +1,133 @@
+---
+import "@total-typescript/ts-reset";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Card from "~/components/Card.astro";
+import Default from "~/layouts/Layout.astro";
+
+type TagID = CollectionEntry<'tags'>['id'];
+
+type Params = Record<string, string | undefined>;
+
+type TPost = CollectionEntry<'posts'>
+
+    const refinePost = (post:TPost) => {
+        const { body, render, ...rest } = { ...post };
+        return rest
+    }
+type Post = ReturnType<typeof refinePost>
+type PostsArr = Post[];
+
+type GetStaticPathsResult = {
+    params: {
+        [K in keyof Params]: Params[K] | number;
+    };
+    props:{ 
+        page:{
+            posts:Post[]
+            isLastPage:boolean|undefined
+            isFirstPage:boolean|undefined
+            url:{
+                prev:string|undefined;
+                next:string|undefined
+            }
+        }
+    }
+}[];
+
+export async function getStaticPaths() {
+    // constants;
+    const pageSize = 3;
+    const refinePost = (post:TPost) => {
+        const { body, render, ...rest } = { ...post };
+        return rest
+    }
+    
+    const [postEntries,tagEntries] = await Promise.all([getCollection("posts"), getCollection('tags')]);
+    postEntries.sort((a,b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
+    let posts:Map<TagID,PostsArr> = new Map();
+    tagEntries.forEach((tag) => {
+        postEntries.forEach((post) => {
+            loop:for (let index = 0; index < post.data.tags.length; index++) {
+                const id = post.data.tags[index]?.id;
+                if(id === tag.id) {
+                    if(posts.has(tag.id)) posts.get(tag.id)?.push(refinePost(post))
+                    else posts.set(tag.id,[refinePost(post)])
+                    break loop;
+                }
+            }
+        })
+    })
+    const pages:GetStaticPathsResult = [];
+    let chunks:Post[] = [];
+    let chunksCount = 0;
+    const emptyChunksToPages = ({ tagID, isLastPage }:{ tagID:TagID, isLastPage?:boolean }) => {
+        chunksCount += 1;
+        let isFirstPage = false;
+        if(pages.length === 0) isFirstPage = true;
+        pages.push({
+                params: {
+                    page: `${tagID}/${chunksCount}`
+                },
+                props: {
+                    page: { posts: chunks, url:{
+                        prev: isFirstPage ? undefined : `${tagID}/${chunksCount-1}`,
+                        next: isLastPage ? undefined : `${tagID}/${chunksCount+1}`
+                    },isFirstPage, isLastPage }
+                }
+        });
+    }
+    let lastTagID:TagID = 'astro';
+    for (const [tagID, postArr] of posts) {
+        postArr.forEach((post) => {
+            chunks.push(post)
+            if(chunks.length > pageSize) {
+                chunks = [];
+                emptyChunksToPages({tagID})
+            }
+        });
+        lastTagID = tagID
+    }
+    if(chunks.length > 0) emptyChunksToPages({tagID:lastTagID,isLastPage:true})
+    else if(pages[pages.length-1]) pages[pages.length-1].props.page.isLastPage = true;
+
+    return pages;
+}
+
+const { page } = Astro.props as {
+    page: GetStaticPathsResult[number]['props']['page']
+};
+---
+
+<Default title="All Posts" description="All of your post are shown here">
+    <main class="max-w-3xl mt-16 mb-24 w-full">
+        <h1 class="text-4xl dark:text-white text-indigo-600 mb-8 font-semibold">Writings</h1>
+        <p class="text-lg text-slate-600 font-medium dark:text-slate-200 mb-12">
+            Usually not a great writer, yet since it's one of the way to expression yourself, share your <span
+                class="inline-block px-2 py-0.5 bg-indigo-500 text-white font-bold rounded-md">learnings</span
+            > and thoughts with the whole world.
+        </p>
+        <ul class="flex flex-col gap-y-12 mb-4">
+            {
+                page.posts.map((post) => {
+                    return (
+                        <li>
+                            <Card
+                                title={post.data.title}
+                                description={post.data.description}
+                                publishedOn={post.data.pubDate}
+                                tags={post.data.tags}
+                                url={"/posts/post/" + `${post.slug}/`}
+                            />
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        <div class="flex items-center justify-center gap-x-2 dark:text-white mt-6">
+            {page.url.prev && <a href={page.url.prev}>Previous</a>}
+            {page.url.prev && page.url.next && <span> | </span>}
+            {page.url.next && <a href={page.url.next}>Next</a>}
+        </div>
+    </main>
+</Default>
