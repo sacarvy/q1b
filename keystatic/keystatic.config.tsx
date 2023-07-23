@@ -201,15 +201,27 @@ export default config({
       label: 'Projects',
       path: 'src/content/projects/*',
       slugField: 'title',
+      format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({ label: 'Description', multiline: true }),
+        draft: fields.checkbox({label: "Draft"}),
+        size: fields.select({
+          label: 'Project Size',
+          options: [
+            { label: 'Large', value: 'large' },
+            { label: 'Medium', value: 'medium' },
+            { label: 'Small', value: 'small' },
+          ],
+          defaultValue: 'small'
+        }),
         type: fields.select({
           label: 'Type',
           options: [
             { label: 'Command-Line App', value: 'command-line' },
             { label: 'Desktop App', value: 'desktop-app' },
             { label: 'Mobile App', value: 'mobile-app' },
+            { label: 'Npm Library', value: 'npm-library' },
             { label: 'Web App', value: 'web-app' },
             { label: 'Design', value: 'design' },
             { label: 'Software', value: 'software' },
@@ -237,6 +249,7 @@ export default config({
           dividers: true,
           links: true,
           images: true,
+          tables: true,
         }),
       },
     }),

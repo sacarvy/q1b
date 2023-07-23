@@ -1,0 +1,42 @@
+---
+title: Position-Component
+description: >-
+  Position Component is Astro Component built upon flex, providing a better way
+  to Position Elements, within a Container.
+draft: false
+type: web-app
+tags:
+  - astro
+website: https://unstylied-components.vercel.app/
+github_link: >-
+  https://github.com/sacarvy/astro-components/tree/main/packages/position-component
+---
+# Position Component
+
+Position Component is a Position Component built upon flex, providing a better way to Position Elements, within a Container
+
+Props it accept are very intuitive, if you are familiar with box model,
+
+```html
+<Position col apart class="w-64 h-64 bg-slate-100">
+  <div> ... </div>
+  <div> ... </div>
+  <div> ... </div>
+  <div> ... </div>
+</Position>
+```
+
+Above, Component will set all the child elements apart and position them vertically!
+
+---
+
+```html
+<Position col stretchX apart="closely" class="w-64 h-64 bg-slate-100">
+  <div> ... </div>
+  <div> ... </div>
+  <div> ... </div>
+  <div> ... </div>
+</Position>
+```
+
+Above, Component will set all the child elements apart closely and stretch them in Horizontal Direction and aligning them vertically!

@@ -1,0 +1,40 @@
+---
+title: Solidjs Scroll Essentials
+description: >-
+  This library provides you with required scroll based primitives to control
+  scroll behavior such as scroll lock in solidjs.
+draft: false
+type: web-app
+tags:
+  - solid-js
+github_link: https://github.com/sacarvy/solidjs-scroll-essentials
+---
+# solidjs-scroll-essentials
+
+This library provides you with required scroll based primitives to control scroll behavior such as scroll lock in solidjs.
+
+```bash
+npm i solidjs-scroll-essentials
+```
+
+---
+
+```tsx
+import { useScrollLock } from "solidjs-scroll-essentials"
+
+function App() {
+    const [isLocked, setScrollLocked] = useScrollLock();
+    return (
+        <div>
+            <span> {isLocked() ? "Scroll Locked" : "Scroll Freed"} </span>
+            <button onClick={() => setScrollLocked(true)}>
+                lock scroll
+            </button>
+        </div>
+    )
+}
+```
+
+This library comes with `useScrollLock`,`useScrollIntoView`,`useScrollPosition` and `useWindowScroll`
+
+All of these Primitives are reactive and well-thought designed.
