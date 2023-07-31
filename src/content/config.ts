@@ -47,6 +47,34 @@ const work = defineCollection({
   })
 })
 
+const libraries = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    draft: z.boolean().default(false),
+    size: z.string(),
+    type: z.string(),
+    tags: z.array(reference('tags')),
+    website: z.string().optional(),
+    github_link: z.string(),
+  })
+})
+
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    draft: z.boolean().default(false),
+    size: z.string(),
+    type: z.string(),
+    tags: z.array(reference('tags')),
+    website: z.string().optional(),
+    github_link: z.string(),
+  })
+})
+
 const sites = defineCollection({
   type: 'data',
   schema: z.object({
@@ -62,7 +90,7 @@ const sites = defineCollection({
 
 const socials = defineCollection({
   type: 'data',
-  schema: z.object({ 
+  schema: z.object({
     data: z.array(z.object({
       platform: z.string(),
       label: z.string(),
@@ -80,6 +108,8 @@ export const collections = {
   sites,
   work,
   socials,
+  projects,
+  libraries
 };
 
 export const data = {

@@ -4,7 +4,10 @@ import Link from "~/components/Resume/link.astro";
 import Layout from "../layouts/Layout.astro";
 import ResumeComp from "~/components/Resume/index.astro";
 import DownloadIcon from "~/ui/icons/DownloadIcon.astro" 
+// import GithubIcon from "~/ui/icons/GithubIcon.astro"
+import ArrowUpRightIcon from "~/ui/icons/ArrowUpRightIcon.astro";
 import { getCollection } from "astro:content";
+import GithubIcon from "~/ui/icons/GithubIcon.astro";
  
 const passion = {
     games: "Basketball",
@@ -83,6 +86,7 @@ const work = [
 ] satisfies Work;
 
 const works = await getCollection('work')
+const libraries = await getCollection('libraries');
 ---
 
 <Layout title="Resume | CV of Sukhpreet Singh a.k.a q1b, software developer">
@@ -153,46 +157,69 @@ const works = await getCollection('work')
                     const endingYear = endDate.getFullYear()
                     const cls = endingYear === startingYear ? `hidden xs:inline-block` : ''
                     const { Content:Summary } = await work.render()
-                    return <li class="">
+                    return (
+                        <li class="">
                                 <div class="flex items-stretch justify-between mb-8">
-                                        <div class="flex flex-col shrink gap-y-2">
-                                            <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
-                                                <a href={company.site} target="_blank" class="border-b border-b-sky-400"> {company.name}</a>
-                                            </h2>
-                                            <span
-                                                class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal"
-                                                >As a {role} </span>
-                                        </div>
-                                        <div class="flex flex-col items-end gap-y-2">
-                                            <div
-                                                class="text-xs xs:text-sm sm:text-base flex gap-x-0.5 xs:gap-x-1 font-medium dark:font-normal text-teal-400 items-center"
-                                            >
-                                                <span>{startingMonth} <span class={cls}>{startingYear}</span></span>
-                                                <span>-</span>
-                                                {work.data.endDate.discriminant ? <span class="text-slate-800 dark:text-slate-200 italic">In Progress</span> : <span>{endingMonth} {endingYear}</span>}
-                                            </div>
-                                            <span
-                                                class="text-xs xs:text-sm sm:text-base text-slate-500 font-medium dark:font-normal dark:text-white"
-                                            >{employment_type}
-                                            </span>
-                                        </div>
+                                <div class="flex flex-col shrink gap-y-2">
+                                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
+                                        <a href={company.site} target="_blank" class="border-b border-b-sky-400"> {company.name}</a>
+                                    </h2>
+                                    <span
+                                        class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal"
+                                        >As a {role} </span>
                                 </div>
-                                <div class="prose prose-sm xs:prose-base max-w-none dark:prose-invert">
-                                    <Summary />
+                                <div class="flex flex-col items-end gap-y-2">
+                                    <div
+                                        class="text-xs xs:text-sm sm:text-base flex gap-x-0.5 xs:gap-x-1 font-medium dark:font-normal text-teal-400 items-center"
+                                    >
+                                        <span>{startingMonth} <span class={cls}>{startingYear}</span></span>
+                                        <span>-</span>
+                                        {work.data.endDate.discriminant ? <span class="text-slate-800 dark:text-slate-200 italic">In Progress</span> : <span>{endingMonth} {endingYear}</span>}
+                                    </div>
+                                    <span
+                                        class="text-xs xs:text-sm sm:text-base text-slate-500 font-medium dark:font-normal dark:text-white"
+                                    >{employment_type}
+                                    </span>
                                 </div>
-                                <div class="flex flex-col">
-                                    {documents.map(document => (
-                                        <Link
-                                            href={document.document}
-                                            download="Sukhpreet Singh Letter of Recommendation"
-                                            class="text-sm sm:text-base"
-                                        >
-                                            {document.label} 
-                                        </Link>
-                                    ))}
-                                </div>
-                            </li>
+                            </div>
+                            <div class="prose prose-sm xs:prose-base max-w-none dark:prose-invert">
+                                <Summary />
+                            </div>
+                            <div class="flex flex-col">
+                                {documents.map(document => (
+                                    <Link
+                                        href={document.document}
+                                        download="Sukhpreet Singh Letter of Recommendation"
+                                        class="text-sm sm:text-base"
+                                    >
+                                        {document.label} 
+                                    </Link>
+                                ))}
+                            </div>
+                        </li>
+                    )
                 })}
+            </ul>
+            <div class="w-full h-1 bg-slate-300 dark:bg-white rounded-full mt-24 mb-16"></div>
+            <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Libraries</h2>
+            <ul class="flex flex-col gap-y-12">
+                {libraries.map(({ data }) => (
+                    <li class="">
+                        <div class="p-2 flex flex-col gap-y-2">
+                            <h4 class="text-indigo-600 dark:text-white font-medium font-robotic text-xl sm:text-3xl">{data.title}</h4>
+                            <p class="sm:text-xl text-slate-600 dark:text-slate-200">{data.description}</p>
+                            <div class="flex gap-x-4">
+                                <span class="group text-slate-500 dark:text-slate-200 relative flex items-start">
+                                    <a href={data?.website ? data.website : "#"} target="_blank" class="border-b border-b-sky-400 pr-4">{!data?.website ? "-----------" : "Website"}</a>
+                                    <ArrowUpRightIcon class="absolute right-0 w-3.5 h-3.5 translate-y-0.5 translate-x-0.5 group-hover:text-blue-500 dark:group-hover:text-sky-400" />
+                                </span>
+                                {data?.github_link && 
+                                        <a href={data?.github_link} target="_blank" class=""><GithubIcon class="text-slate-600 dark:text-slate-300 hover:text-slate-700 hover:scale-105 active:scale-95 dark:hover:text-slate-200"/></a>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                ))}
             </ul>
         </div>
     </main>

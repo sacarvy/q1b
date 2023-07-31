@@ -1,4 +1,5 @@
-import { writeFile, mkdir, open } from "node:fs/promises"
+import { writeFile } from 'node:fs/promises';
+import { Buffer } from 'node:buffer';
 import { prepareAstroComponent } from "./template.mjs"
 
 const RequiredIcons = [
@@ -7,10 +8,15 @@ const RequiredIcons = [
 		solid: "fluent:person-48-filled",
 		name: "Profile",
 	},
-		{
+	{
 		outline: "heroicons:arrow-left",
 		solid: "heroicons:arrow-left-solid",
 		name: "ArrowLeft"
+	},
+	{
+		outline: "fluent:arrow-up-right-24-regular",
+		solid: "fluent:arrow-up-right-24-filled",
+		name: "ArrowUpRight"
 	},
 	{
 		outline: "heroicons:arrow-right",
@@ -96,14 +102,23 @@ const RequiredIcons = [
 		path: "eos-icons:loading",
 		name: "Loading",
 	},
+	{
+		path: "radix-icons:github-logo",
+		name: "Github"
+	}
 ];
 
 const getName = (name) => '../../src/ui/icons/' + name + 'Icon' + '.astro'
+
 RequiredIcons.forEach(async (detail) => {
 	const component = prepareAstroComponent(detail);
-	const pathname = new URL(getName(detail.name),import.meta.url)
-	await writeFile(pathname, component, {
-		flag: 'a+',
-		encoding: 'utf-8',
-	})
+	const pathname = new URL(getName(detail.name), import.meta.url)
+
+	try {
+		const data = new Uint8Array(Buffer.from(component));
+		await writeFile(pathname, data);
+	} catch (err) {
+		// When a request is aborted - err is an AbortError
+		console.error(err);
+	}
 });

@@ -77,7 +77,7 @@ ${shared}
 ---
 <${Recevied}
     shape-rendering="geometricPrecision"
-    className={cn("w-6 h-6 group-active:scale-100 group-hover:scale-105 transition-transform",
+    class={cn("w-6 h-6 group-active:scale-100 group-hover:scale-105 transition-transform",
       className
     )}
     {...attrs}

@@ -1,0 +1,76 @@
+---
+import Layout from "~/layouts/Layout.astro";
+// import { cn } from "~/lib/utils";
+---
+
+<Layout title="Button Component">
+    <main class="w-full max-w-3xl mt-16 mb-24">
+        <h1 class="text-5xl text-slate-500 dark:text-slate-300 font-robotic">Buttons</h1>
+        <ul class="flex gap-4">
+            <!-- 
+                Black Variant as White Ranger
+                https://unocss.dev/play/?html=DwWwhglgdgBAxgGzAZ2QXgEQmgWgBY7JwBOApqbAGYKkAeMEALqSMjnBc8TAFYCuyRhEoBPdp1LcA5mAAOOWjgAcMAEZScAdzxNSMACZhiAawBc6wkmbKADDYwA%2BAFAwYwVX0aMA9rEQp0DE0ccHpibz4ofVJ9HAQpGFlFACYAOgBWRLEARhhkPDB9b2DoKEk1b2Jo7kZiMChkJghfdm8ESuQYUhRSHGgXVzUNZCtegHY7GGZaRkswa3SbAdd8wuK56wBmOwB6beWYSm84ARwANwhG1RpTAApiaA1kmAeoDW9KSmRSWeSAShgBzw3jOkjuFhG816Skm01mkIWNgBByOJzYFyuN1uENGthsOwAnDYpnRZtpdMjBodjqcMRBrqQ7q93p9vmSdMwXo8Nr0ACx2SmDMBwISg8HDXFE4lwrQc0iC1z6S5gBn6cWy3QkmY8nD84mqSrVHXJAWAqkHQwmdXQJVSbw4Rb4ola2Y2iB2h36w2SPpRd32vU7RYKgxGMzA0HEa1%2Bj2OipVH1uj3bfFjTIypP24NmwaWsyo2mXelYiyZz34mHxo1luMy8nMEN50wF9FFhlM7kfL4-HUw4nM322%2B0ANlNFrDpmFosZ2I0Nd2lYNCeIg-95ZdGobOcVE6VyBVNDVs51E2lpJ1jpDAG0tKRVMYmDhGHJ8O68Ag37M4G1KqZavVkFkIxOAAbgAXTyUgaBFHAoF8PQIkYD8ylg%2BCMAGBxtxgABRWgwBAWQaAGYAdg8LxfGcVx3E8HwoAOfxUEwYJQheCIohiOIEiSHA0kyWQcjyAoimCZAQCrcp-waJoWm-dpiE6bpvl9A4LHrPQZQRXpRy9ZdjV2NMsJbc42yxAdngHLs2R4v4gRBMFj00z0N0c09xJXRyUxDIy6XbBzcWyWFzxcyYlyNDyxypbyTJnCzWR7NSuTeHVA1HEMpwgMU-KhHjAu1YKdLC3FPKwvcDxidUEo03E9TcvSkXNBrcwnHFstcpsquyxZQytUKfUc7SdjTccrQjeyWusbTasc2sgtxYNhvzGlW0xGdxq0hcCr63FJrrOUbKpJsopWjskssntHL7RKJWy7T9qaq10sytacAGxdvXc7bcvZCkFtMUrVXVfKps%2Bs88rmgUDhvTQ7wfWZn3kHQpHfT9Wjkv86gaICyCgRhwMg6DZjgsoYEQ5DeiJ0h0NcSjBlw-DCNIYjSJoiinBI8BoGcIA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCSAxgVWRdbQKpYRwC%2Bc6KBBBwA5AFduDKlVEAoUJFhwYUAIZYq6aCFRQAamqjANMAOJDxYAUJGiAApIjSqAelUatOvQFoAbkYmWDA%2BRJZg8nKoAB5K8GjoauIANvEY2HgExAAUCHJwcFAp1ABccADa5aIM4lQwwj5FyaiiZEhMydBlopTIonwAugMk%2BXBUABbQMDUwVGV5BQXVtfUgPhNTM6LdMDEhyUQqez7QGkSocJN%2BeiW70SG7asmto7wjBWw0s2Xlox%2BUXy4EGyAEp3otPrRGMxcn9FlQGE9UGUAIwAOgATODFnAGMgsN1xjAYGA5q5XNQQGiJq4XjjeGDRsNRh5NNooLooHMKqyvBy9IZjKYLBArKDmQy5EA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g
+             -->
+            <!-- https://unocss.dev/play/?html=DwWwhglgdgBAxgGzAZ2QXgEQmgWgBY7JwBOApqbAGYKkAeMEALqSMjnBc8TAFYCuyRhEoBPdp1LcA5mAAOOWjgAcMAEZScAdzxNSMACZhiAawBc6wkmbKADDYwA%2BAFAwYwVX0aMA9rEQp0DE0ccHpibz4ofVJ9EP0YWUUAJgA6AFYEsQBGGGQ8MH1vYOQQNW9iaO5GYjAoZCYIX3ZvBHLkGFIUUhxoF1c1DWh9CClvHDS7GGZaRh6okbGJvtdKbzgBHAA3CHrVGlMACmJoDSSYY6gNb0pKZFJZpIBKGGWYPG9NyUOLIYWcADY7AB6ACcNimdFmv1G4xsz1eq3WbG2u32Bx%2B8xhgJsoPB01m2l08P6MERGxRED2pEOFyuNzuBJ0zHOJzmwxhABY7MT%2BmA4EJPt9BpixtiITMtEzSDzXMNkGAqfohZLdOLZsgrN0ueDVOVKpYwNYktyXiTXoYTMroYtgWC1Wy-hMyhVJA7OcCJjKDEYzO9PsQrSLYTq9a7rTgAMzAgDsGXxbptXotZjJyJ2lLRGPZNpxShDLuICeD9sJzCTPtMqa26apNNZ11u9wN1jz4NpRex5ctfIF1PRwuzwaBeed%2BvDEzxkJVZdN-WTpjlCpoSv7ze60cm8Y1hu6E69AG0tKRVMYmDhGHJ8CM8Ahr7M4C1yqZqrVkLIjJwANwAXVypBo-I4FAvh6BEjC3lA3TAZBGB9A4s6uAAorQYAgLINB9MAQIeF4vjOK47ieD4UCvP4qCYMEoTnBEUQxHECTJOkmQ4DkeQFEUhClLqBZTDUdQNE0D6tMQ7SdHccyvBYpZ6FumoApM3H6tuRoxhkCJrOSNZou2Zztg2DI4E8rx%2Bl8q7Kbuk4SuZOAbvmSlyVGcIIaSGlpqifYWNZWSblO1m2aOrrWY5XpVhStZHPW9JNtJLKXGuODakCgJej2ECCmZcneZZ6pyf5imBQ5JrmjsS4xMqMWyTuCUKaGhbWcaTn9K85oVhlVX%2BZV1hOvldVydiQKxo8LWWiZAZtdYYo9fFE72tZnrDSmrnVu5yrWf1I5TWtPkStJQ0kvOoVaX2elRTlVWtrFGhbXCC2mKl6WeX1wIbbV8VivGu23YuiqrblNUFm921nV13KvIemjHqeswXvIOhSDed7NMJz58W%2BH5QIwP5-gBszQaBngQVBIGwa4%2BH9MhqHoaQmHYUReFOFh4DQM4QA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCSAxgVWRdbQKpYRwC%2Bc6KBBBwA5AFduDKlVEAoUJFhwYUAIZYq6aCFRQAamqjANMAOJDxYAUJGiAApIjSqAelUatOvQFoAbkYmWDA%2BRJZg8nKoAB5K8GjoauIANvEY2HgExAAUCHJwcFAp1ABccADa5aIM4lQwwj5FyaiiZEhMydBlopTIonwAugMk%2BXBUABbQMDUwVGV5BQXVtfUgPhNTM6LdMDEhyUQqez7QGkSocJN%2BeiW70SG7asmto7wjBWw0s2Xlox%2BUXy4EGyAEp3otPrRGMxcn9FlQGE9UGUAIwAOgATODFnAGMgsN1xjAYGA5q5XNQQGiJq4XjjeGDRsNRh5NNooLooHMKqyvBy9IZjKYLBArKDmQy5EA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFyQK4FMC%2BQA -->
+            <li class="flex w-max flex-col gap-y-2 rounded-xl m-10 pt-2 pb-3 pl-2 pr-4 ml-4">
+                <h2 class="pl-1 text-sm text-slate-400">Button Alert / Cancel</h2>
+                <div class="ml-2">
+                    <button
+                        class="w-max rounded-md px-2.5 py-1 shadow-sm border transition-colors ease-in bg-rose-500 text-rose-50 focus-visible:ring-2 focus-visible:ring-offset-2 hover:bg-rose-600/90 hover:text-rose-50 focus-visible:bg-rose-600/90 focus-visible:text-white focus-visible:ring-offset-white focus-visible:ring-rose-400 active:bg-rose-600 active:text-white disabled:bg-white disabled:text-slate-400 disabled:border-slate-200 dark:bg-rose-500/90 dark:text-rose-50 dark:border-rose-400/50 dark:hover:bg-rose-500 dark:hover:border-rose-300/75 dark:hover:text-rose-50 dark:focus-visible:bg-rose-500/80 dark:focus-visible:border-rose-500 dark:focus-visible:text-white dark:focus-visible:ring-offset-slate-800 dark:focus-visible:ring-rose-600 dark:active:bg-rose-500/80 dark:active:border-rose-500 dark:active:text-white dark:disabled:bg-slate-700 dark:disabled:text-slate-500 [-webkit-tap-highlight-color:transparent;] select-none outline-none"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </li>
+            <li class="flex w-max flex-col gap-y-2 rounded-xl m-10 pt-2 pb-3 pl-2 pr-4 ml-4">
+                <h2 class="pl-1 text-sm text-slate-400">Button Accent</h2>
+                <div class="ml-2">
+                    <button class="w-max rounded-md px-2.5 py-1 shadow-sm border transition-colors ease-in
+    bg-indigo-500 text-indigo-50
+    focus-visible:ring-2 focus-visible:ring-offset-2 
+    hover:bg-indigo-600/90 hover:text-indigo-50 
+    focus-visible:bg-indigo-600/90 focus-visible:text-white 
+    focus-visible:ring-offset-white focus-visible:ring-indigo-400 
+    active:bg-indigo-600 active:text-white 
+    disabled:bg-white disabled:text-slate-400 disabled:border-slate-200 
+    
+    dark:bg-indigo-500/90 dark:text-indigo-50 dark:border-indigo-400/50 
+    dark:hover:bg-indigo-500 dark:hover:border-indigo-300/75 dark:hover:text-indigo-50 
+    dark:focus-visible:bg-indigo-500/80 dark:focus-visible:border-indigo-500 dark:focus-visible:text-white 
+    dark:focus-visible:ring-offset-slate-800 dark:focus-visible:ring-indigo-600 
+    dark:active:bg-indigo-500/80 dark:active:border-indigo-500 dark:active:text-white 
+    dark:disabled:bg-slate-700 dark:disabled:text-slate-500 
+    [-webkit-tap-highlight-color:transparent;] select-none outline-none"
+  > 
+    Example
+  </button>
+                </div>
+            </li>
+            <li class="flex w-max flex-col gap-y-2 rounded-xl m-10 pt-2 pb-3 pl-2 pr-4 ml-4">
+                <h2 class="pl-1 text-sm text-slate-400">Button Subtle</h2>
+                <div class="ml-2">
+  <button
+    class="w-max rounded-md px-2.5 py-1 shadow-sm border transition-colors ease-in
+    bg-white text-slate-600 border-slate-200/75 
+    focus-visible:ring-2 focus-visible:ring-offset-2
+    hover:bg-slate-50 hover:text-slate-700 hover:border-slate-300 
+    focus-visible:bg-slate-100 focus-visible:text-slate-700 focus-visible:border-slate-300 
+    focus-visible:ring-offset-white focus-visible:ring-slate-400/60 
+    active:bg-slate-100 active:text-slate-700 active:border-slate-300 
+    disabled:bg-white disabled:text-slate-400 disabled:border-slate-200    
+    
+    dark:bg-slate-700 dark:text-slate-50 dark:border-slate-600/75
+    dark:hover:bg-slate-600 dark:hover:border-slate-500 dark:hover:text-slate-50
+    dark:focus-visible:bg-slate-600/80 dark:focus-visible:border-slate-600 dark:focus-visible:text-white
+    dark:focus-visible:ring-offset-slate-800 dark:focus-visible:ring-slate-600
+    dark:active:bg-slate-600/80 dark:active:border-slate-600 dark:active:text-white
+    dark:disabled:bg-slate-700 dark:disabled:border-slate-600 dark:disabled:text-slate-500
+    [-webkit-tap-highlight-color:transparent;] select-none"
+  >
+    Example
+  </button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</Layout>

@@ -1,0 +1,50 @@
+---
+import Layout from "~/layouts/Layout.astro";
+// import { cn } from "~/lib/utils";
+import Button from "../button/_index.astro"
+// https://unocss.dev/play/?html=DwWwhglgdgUABHAxgGzAZzQXgEQmgWgAt81EAnAUwqjgDNkKAPOCAFwpDX0WvbLgBWAVzSsItAJ7deFfgHMwAB3yN8ADjgAjOfgDuhNhTgATMGQDWALm0lU7dQAYH2GAD54cYMYgA3JKgwceiZBETFJaSg%2BOEVWfABGADZsdwQEL18WYxxjMgB7RWM83Sh8fLzWbH90LGxKO18KFI80zwBCfHw4ACEhVlY8mk7U1s9NPoHYUbSzCDBuQdZ85FrcgqKS-EUwKApkF2mEVglFChxx-sGDw9aUGpxoZGgKfGDmQ05I6IVlVQAmOC6fDgZj5IRQYwUYz4ZByGL-AB0AFYYlJ4nA0IQwBsSCAtHkyJD%2BEsdmg2BBBgtkAS0HAKOgXtAWlodPpDHB2Iw4mg7C9Ek58YTZLYwPY-k4APQAdhRzNoeUQInwPggZM0DEsZGgOgB8sVXBVao1WqgOjytFoaAocT%2BzMIeR8smsOh5opeSIccHtjrIlk53N5%2BClAu9Ts0BKJIvsAGYBXKFUrDRB1RRnVGXvEBXrE6rkxr-emg1mEwbcynrBHha6Y3HWtnS0bUyazRarXE2ew6CXlWXjdrCwAWSX8uDMsCIMSOtPVjMC8eT1MFmdFz3zxoVoVkQuxz3M7xoMAp4xpjtGfeHhjHpeBoee89HjeR5fiz1pPdmKw2ZfBu8fv1MAM3XwD0TD-cNN0LfkHGlJF3wsSxQ19L9Ayg0D4MQx8q0DD1f3Qh0nWvICPTgqx6x7RtpxQyU1Fw0juyTctwKfKjaMsMiGPzAC9AMdgSLY%2BjeybftzUta1Cxo1j2MEzV%2B2XKC%2BLXKdkKAqCJRotCrEU1MmKwlSBVMeCtP-LluMMPj70vSigJ-DTLAsqFMK3OT9L-eyry45ccOZABtPQKE0cw2HwVglCICA5EIJ4IriRA8mpX0SSgNBtkoKIAG4AF0MT2CgJ3wKBBiMPI%2BieXZ8sK65WhGaYAHlYgpJLmVaYAOi6QhZDyCBYqSyxEHanx8lKDYhnwarRmANAfDkJrRkYEBkCSnBCH6RRLAlCVdE2hFdGjBECTkCUX2gya5Eqw4VQoXRujyRgcE9T1xTgcUzumWgIGQZAcEVMhUtYABhOKCRe0Y7kCbAgRRYgkWBhAxumYBtlYQgZte97kDKIQGBwChHQK4xjBh0ZsmwABZJEET%2BaM4ClCn4jABEZQZlF7vieIEQcRJ2b%2BAAZTM4FZhEkjUZBdqleJ8F2gBOaM1HpxmZTgT1WbZhwNBVgd0YHCmUS1pE5fJhWWYSdmNAcTXtfwXX9aZxXFZVv5jY5gAvQnbieZQyExs5sBx6g8nx124AlOG0mACUTpDsOLkmSPWrgAAFHY9jgYYZoyHwUayHJ8kKYpSm2XZ9kz0HakPNA4r6IwlzxBhaDiT0QBtQFLYHOAwQhKFgWMFlTM7TFsWKLuMSxHFnwFHT%2BAnwsXxifBdQgMhRE1YqO%2BhOIQG7gJWGX8FIWhTQu%2BBkP0mjwZM%2BOU5zgmK5M7d%2B5sEeZ5XgYd52E%2BHgolkOAfhUOfm9oTGyA24rz3kPRQ-xUTGxRIlMkYhKSxXirSekVp8BMlaDYU8HIPIsUFMxICL4YKjjrAJCizY-5SVIcJVsYlbStAwspewIEMKEXsDZehlYnKBh3EQtIFC8zaRdIGTMno%2BHlhYS8GyoiNRT2XNw%2BM%2BpyL8JkqafAIk2y9yMFIoSKjly3glCOMcE51wMNnKuIxU5xErjgEZGRXDaxpDcieHiZ5VQXgcpY28JhXEPlsfggUb5WgGU-II6yLl4KWJAkExykFJQyj4vQkJ9hUJRPYRBTyYSrDMOwURBwfEtFWSSdRSSJClG%2BMKcUhRHFFxcVPHkkp5YyFqLEsuCStl8lkOcrkwJf4bGJL5EU2yNiOExNYkZAstTunwUcSYqxUTpnDM6bZRxESnA%2BT8gFIKIVlAGAilFZaVICR%2BjIKSFKvBMrZQYHlAquw4DFVYKVF41ymgzWPu0ToXoOpdUGGgXq-VBr4GGinUamcJpTTgHNBatRlqsFWutTauhtq7X2odJwx0ppVAuldG6d1baPWenQNGX0hA-V4ADeKVQS44CBLrL0ltkTNHSIjQgBKPoYyxj7XG-sCYmBwCTAEWs-hIgAIJ-G1k9MVLMBUoj%2BIQAWwrRWCvFYqlm8QNBSp8GoZEIqxUKuZnbeIBsUQGuILtTMetdoenRBahw6J7o2sFvzBEiQpRSiFUzG2Krdp-ESPzNQAAJTmUoBzW0NnbfACIBxqAHMbaMlMhXWqtciG1tsnA02jEiI1SI-VSu1Yq3VKb4gAkLUzHw6hkROxAGzZmIa9X2plOGmUsqq01oLe6mUPgaZ6zbbW8W3bs3axbUbJmDakSls7S7fwEAPZe2xpygOQd3BhwjrfOAf12qIHMKuvIIBFCVzIGnCUp8oCvOAEe8%2BJxvZHsDggSlD8oAPOfiED4XAP7fFChAoEACPrAN3p3De8I-6KDRMiDkxykrkngYDRedIGSoKmGkDBzisEmUWWUl4BCFbyJzJQlRup6l9hUU0m0dp8JIT6cBT0WSUOBjYaR6Jsj7EIHyTM4RXZKnSUsZI-D2kFl2N3MQ9jOGWyiXbEh9pskbzDn4zMcxAjCysbGdk1hc5ZP0b4zwhA0zWRIeWUpl4nj5lpMDDPAJDiwLkZslElZtk0P4FUnEyZmS6MzOSX%2BVJeDGEZIQnRlZdTBOlPI6pdSUTmO8b0hU7DSjxnOL85FhpVCRPiS8%2BJnRLEFKqZcwMqJQyjPhcGap6LZlHN2W8ZZGZlnXKlYcrZ1zUyqvuWozkrpaRfK6H8oFOIWywq7PCvshBhyYGnPSllK0ly4hPNuSVJ%2BTyj4grju1fIXyep9Rxv8wFqcbigrhBCxa2BoWwo2ltHae0yAHSOuHdFcBMXXVutge6T0HrOBZZ9bA31fpkqBtUMG1KQPEF1gyzwTLntsu9r7PG3LiZ8rgDm-N%2BbJU6qbVq2HEr9Vqu1hqpHOqUc2oNTbY1EtBYOHNUmxNlqU32vRGzZ1rru0FviF6n1qqA0M2DbTodkbo1s1jdGeNJO4AJvJ2mjN-Ms0w6x8qu2RbRXtrLUiCtVbFaDrtsOpmiOu3yx7d2jtyIlc2pHUzftgrde9vrSWoM5aKXuxB7Ov287g4wCXVNV5CA125U3QDHde6D1HpPWem4F9L3XygNer7tRH5lTeCwN%2BL6ZDyHfX-T9gCf2rzARAoDUDQOkgg6Ufr0HkGMngwgRD7JLGoVsxh2UAm4sEZ1Gx6v2jhPqNoWkBJhYmE%2Bb01Y9zukazSaY9xgppi68Nii53rj-nGJhd7xp4fij4uEeoaJ9kKXyN6IMa0Xp8mVMLmMoBZTZid%2B2bkYE%2BrTj2S6ca-YAzp-y-%2BIQHxcrXnrNRJq7E2CxXW%2BLJSc5qf7ovNUb3z-1ixH0YkCyyz-FC1y3KTaQH0K14mKxX1UUXySwixAJrxGXS0PzAOgmCx6Qy1-zsy80UxMgmTMzqwPB8Qsy80Mw836VYgv0AIo2awQFa3a02VCh2Uil6xiigyOROTMDORGxyiuUKkm3uWmwqheTm3eQW06m6h%2BRWwGkpHW2BRuHSBOnBXml232zWkOwRWO2RXOxOgxQgEuhuxxUeweyqDeg%2BiJRJSiA%2BzIEt3vghlpWhmd0ZVFGZUhz5lFj1gBABCVgcEtlxSenJ1bgcCdhJniBpkVStjZ0VicCgShh1wSNRUdSREIHJjlzJn5yZmN310bSgWN2CKrVlVSI11bQ1yiKlX5ilF1ySLKOKLSIFDKKrSiJiLFRiIaNKORBSPV0NXJyVj6OyKiMln5gcAKO7X6JKOSOyLdUqJZnGMzA6NiKNQcHyJaN6MyOaMWMSOGMyPaOiNbkzDAACNtkzBCIejCLtQiI6KVk5iN3OKCKuLCMCMSLuKqHtzUM8AuzkGdyFWMGEFEBAF4DQG9yD0jglG8B8DGjDhhJGHhN8EXQlHAGgHcCAA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCSAxgVWRdbQKpYRwC%2Bc6KBBBwA5AFduDKlVEAoUJFhwYUAIZYq6aCFRQAamqjANMAOJDxYAUJGiAApIjSqAelUatOvQFoAbkYmWDA%2BRJZg8nKoAB5K8GjoauIANvEY2HgExAAUCHJwcFAp1ABccADa5aIM4lQwwj5FyaiiZEhMydBlopTIonwAugMk%2BXBUABbQMDUwVGV5BQXVtfUgPhNTM6LdMDEhyUQqez7QGkSocJN%2BeiW70SG7asmto7wjBWw0s2Xlox%2BUXy4EGyAEp3otPrRGMxcn9FlQGE9UGUAIwAOgATODFnAGMgsN1xjAYGA5q5XNQQGiJq4XjjeGDRsNRh5NNooLooHMKqyvBy9IZjKYLBArKDmQy5EA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g
+---
+
+<Layout title="Button Component">
+    <main class="w-full max-w-3xl mt-16 mb-96">
+        <h1 class="text-5xl text-slate-500 dark:text-slate-300 font-robotic">Dropdown</h1>
+        <div class="flex justify-center pt-16">
+            <div
+                id="dropdown-root"
+                class="relative"
+            >
+                <!-- Button -->
+                <Button
+                    aria-controls="dropdown-panel"
+                    type="button"
+                > 
+                    Options                     
+                    <!-- heroicons:chevron-down -->    
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </Button>
+
+                <!-- Panel -->
+                <div
+                    id="dropdown-panel"
+                    class="absolute left-0 mt-1 w-40 rounded-md bg-white dark:bg-slate-700 shadow-md border border-slate-200 dark:border-slate-500 p-1.5 first:rounded-t-md last:rounded-b-md"
+                >
+                    <Button class="shadow-none w-full bg-transparent rounded-md px-2.5 h-8 border-none" >
+                        New task
+                    </Button>
+
+                    <Button class="shadow-none w-full bg-transparent rounded-md px-2.5 h-8 border-none" >
+                        New task
+                    </Button>
+
+                    <Button class="shadow-none w-full bg-transparent rounded-md px-2.5 h-8 border-none" >
+                        <span class="text-red-600">Delete Task</span>
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<!-- <script src="./index.ts"></script> -->
