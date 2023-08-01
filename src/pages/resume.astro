@@ -189,7 +189,8 @@ const libraries = await getCollection('libraries');
                                 {documents.map(document => (
                                     <Link
                                         href={document.document}
-                                        download="Sukhpreet Singh Letter of Recommendation"
+                                        rel="noreferrer"
+                                        target="_blank"
                                         class="text-sm sm:text-base"
                                     >
                                         {document.label} 
@@ -200,6 +201,7 @@ const libraries = await getCollection('libraries');
                     )
                 })}
             </ul>
+            <!-- <a href="https://www.theseus.fi/bitstream/handle/10024/795367/Cao_Xuan-An.pdf" rel="noreferrer" target="_blank" q:id="bc"> -->
             <div class="w-full h-1 bg-slate-300 dark:bg-white rounded-full mt-24 mb-16"></div>
             <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Libraries</h2>
             <ul class="flex flex-col gap-y-12">
