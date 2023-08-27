@@ -1,10 +1,10 @@
 {
-  "recommendations": [
-    "astro-build.astro-vscode",
-    "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode",
-    "antfu.iconify",
-    "mohitsingh.markdoc"
-  ],
-  "unwantedRecommendations": []
+    "recommendations": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "antfu.iconify",
+        "mohitsingh.markdoc"
+    ],
+    "unwantedRecommendations": []
 }

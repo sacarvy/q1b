@@ -19,8 +19,8 @@ const action = {
 
 if (process.argv.includes("--delete") || process.argv.includes("-d")) {
 	action.delete();
-	console.log("Deleted Files")
+	console.log("Deleted Files");
 } else {
 	action.sync();
-	console.log("Cached Files are Pasted!")
+	console.log("Cached Files are Pasted!");
 }

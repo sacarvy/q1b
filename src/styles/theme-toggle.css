@@ -70,8 +70,8 @@
 		transition: transform 0.5s var(--ease-elastic-3, var(--ease-3));
 	}
 	.sun-and-moon > .sun-beams {
-		transition: transform 0.5s
-				var(--ease-elastic-4, var(--ease-in-backshot)),
+		transition:
+			transform 0.5s var(--ease-elastic-4, var(--ease-in-backshot)),
 			opacity 0.5s var(--ease-3, var(--ease-in-backshot));
 	}
 	.sun-and-moon .moon > circle {

@@ -1,5 +1,5 @@
-import KeystaticApp from './keystatic';
+import KeystaticApp from "./keystatic";
 
 export default function RootLayout() {
-  return <KeystaticApp />;
+	return <KeystaticApp />;
 }

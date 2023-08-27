@@ -1,20 +1,21 @@
 // any combination of spaces and punctuation characters
 // thanks to http://stackoverflow.com/a/25575009
-const wordSeparators = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]+/;
+const wordSeparators =
+	/[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]+/;
 
 //👆 convert hero_icon to HeroIcon
 export function pascalCase(str) {
-    var words = str.split(wordSeparators);
-    var len = words.length;
-    var mappedWords = new Array(len);
-    for (var i = 0; i < len; i++) {
-        var word = words[i];
-        if (word === "") {
-            continue;
-        }
-        mappedWords[i] = word[0].toUpperCase() + word.slice(1);
-    }
-    return mappedWords.join("");
+	var words = str.split(wordSeparators);
+	var len = words.length;
+	var mappedWords = new Array(len);
+	for (var i = 0; i < len; i++) {
+		var word = words[i];
+		if (word === "") {
+			continue;
+		}
+		mappedWords[i] = word[0].toUpperCase() + word.slice(1);
+	}
+	return mappedWords.join("");
 }
 
 const shared = `import { cn } from "~/lib/utils"
@@ -22,11 +23,11 @@ const shared = `import { cn } from "~/lib/utils"
 export type Props = {
     class?:string
 };
-const { class: className, ...attrs } = Astro.props`
+const { class: className, ...attrs } = Astro.props`;
 
 export const prepareAstroComponent = (props) => {
-    if (props?.svg) {
-        return `---
+	if (props?.svg) {
+		return `---
 ${shared}
 ---
 ${props.svg(`
@@ -37,13 +38,15 @@ ${props.svg(`
     {...attrs}
 `)}>
 `;
-    } else if (props?.solid && props?.outline) {
-        const [solidPack, ..._solidIcon] = props?.solid.split(":");
-        const [outlinePack, ..._outlineIcon] = props?.outline.split(":");
-        //  import Recevied  from "~icons/heroicons-outline/plus-circle"
-        const SolidIconName = pascalCase(solidPack) + pascalCase(_solidIcon.join(""));
-        const OutlineIconName = pascalCase(outlinePack) + pascalCase(_outlineIcon.join(""));
-        return `---
+	} else if (props?.solid && props?.outline) {
+		const [solidPack, ..._solidIcon] = props?.solid.split(":");
+		const [outlinePack, ..._outlineIcon] = props?.outline.split(":");
+		//  import Recevied  from "~icons/heroicons-outline/plus-circle"
+		const SolidIconName =
+			pascalCase(solidPack) + pascalCase(_solidIcon.join(""));
+		const OutlineIconName =
+			pascalCase(outlinePack) + pascalCase(_outlineIcon.join(""));
+		return `---
 import ${SolidIconName} from "~icons/${solidPack}/${_solidIcon}";
 import ${OutlineIconName} from "~icons/${outlinePack}/${_outlineIcon}";
 ${shared}
@@ -67,11 +70,11 @@ ${shared}
     />
 </span>
 `;
-    } else {
-        const [pack, ..._name] = props?.path.split(":");
-        //  import Recevied  from "~icons/heroicons-outline/plus-circle"
-        const Recevied = pascalCase(pack) + pascalCase(_name.join(""));
-        return `---
+	} else {
+		const [pack, ..._name] = props?.path.split(":");
+		//  import Recevied  from "~icons/heroicons-outline/plus-circle"
+		const Recevied = pascalCase(pack) + pascalCase(_name.join(""));
+		return `---
 import ${Recevied} from "~icons/${pack}/${_name}";
 ${shared}
 ---
@@ -83,5 +86,5 @@ ${shared}
     {...attrs}
 />
 `;
-    }
+	}
 };

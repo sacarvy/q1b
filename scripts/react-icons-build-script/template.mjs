@@ -1,24 +1,25 @@
 // any combination of spaces and punctuation characters
 // thanks to http://stackoverflow.com/a/25575009
-const wordSeparators = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]+/;
+const wordSeparators =
+	/[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]+/;
 //👆 convert hero_icon to HeroIcon
 function pascalCase(str) {
-    var words = str.split(wordSeparators);
-    var len = words.length;
-    var mappedWords = new Array(len);
-    for (var i = 0; i < len; i++) {
-        var word = words[i];
-        if (word === "") {
-            continue;
-        }
-        mappedWords[i] = word[0].toUpperCase() + word.slice(1);
-    }
-    return mappedWords.join("");
+	var words = str.split(wordSeparators);
+	var len = words.length;
+	var mappedWords = new Array(len);
+	for (var i = 0; i < len; i++) {
+		var word = words[i];
+		if (word === "") {
+			continue;
+		}
+		mappedWords[i] = word[0].toUpperCase() + word.slice(1);
+	}
+	return mappedWords.join("");
 }
 
 export const template = (props) => {
-    if (props?.svg) {
-        return `
+	if (props?.svg) {
+		return `
 
 export const ${props.name}Icon = (
     props: Omit<PropsWithoutRef<SVGProps<ReactSVGElement>>, 'className'> & {
@@ -36,13 +37,15 @@ export const ${props.name}Icon = (
         `)}>
     );
 }`;
-    } else if (props?.solid && props?.outline) {
-        const [solidPack, ..._solidIcon] = props?.solid.split(":");
-        const [outlinePack, ..._outlineIcon] = props?.outline.split(":");
-        //  import Recevied  from "~icons/heroicons-outline/plus-circle"
-        const SolidIconName = pascalCase(solidPack) + pascalCase(_solidIcon.join(""));
-        const OutlineIconName = pascalCase(outlinePack) + pascalCase(_outlineIcon.join(""));
-        return `
+	} else if (props?.solid && props?.outline) {
+		const [solidPack, ..._solidIcon] = props?.solid.split(":");
+		const [outlinePack, ..._outlineIcon] = props?.outline.split(":");
+		//  import Recevied  from "~icons/heroicons-outline/plus-circle"
+		const SolidIconName =
+			pascalCase(solidPack) + pascalCase(_solidIcon.join(""));
+		const OutlineIconName =
+			pascalCase(outlinePack) + pascalCase(_outlineIcon.join(""));
+		return `
 import ${SolidIconName} from "~icons/${solidPack}/${_solidIcon}";
 import ${OutlineIconName} from "~icons/${outlinePack}/${_outlineIcon}";
 
@@ -73,11 +76,11 @@ export const ${props.name}Icon = (
     </span>
     )
 }`;
-    } else {
-        const [pack, ..._name] = props?.path.split(":");
-        //  import Recevied  from "~icons/heroicons-outline/plus-circle"
-        const Recevied = pascalCase(pack) + pascalCase(_name.join(""));
-        return `
+	} else {
+		const [pack, ..._name] = props?.path.split(":");
+		//  import Recevied  from "~icons/heroicons-outline/plus-circle"
+		const Recevied = pascalCase(pack) + pascalCase(_name.join(""));
+		return `
 import ${Recevied} from "~icons/${pack}/${_name}";
 
 export const ${props.name}Icon = (
@@ -96,5 +99,5 @@ export const ${props.name}Icon = (
         />
     )
 }`;
-    }
+	}
 };

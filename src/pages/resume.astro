@@ -1,228 +1,359 @@
 ---
-import type { Contacts, Education, Passion, Skills, Work } from "~/components/Resume/type";
+import type {
+  Contacts,
+  Education,
+  Passion,
+  Skills,
+  Work,
+} from "~/components/Resume/type";
 import Link from "~/components/Resume/link.astro";
 import Layout from "../layouts/Layout.astro";
 import ResumeComp from "~/components/Resume/index.astro";
-import DownloadIcon from "~/ui/icons/DownloadIcon.astro" 
+import DownloadIcon from "~/ui/icons/DownloadIcon.astro";
 // import GithubIcon from "~/ui/icons/GithubIcon.astro"
 import ArrowUpRightIcon from "~/ui/icons/ArrowUpRightIcon.astro";
 import { getCollection } from "astro:content";
 import GithubIcon from "~/ui/icons/GithubIcon.astro";
- 
+import ordinal from "ordinal";
+import LinkIcon from "~/ui/icons/LinkIcon.astro";
+
 const passion = {
-    games: "Basketball",
-    others: "Meditation Yoga",
+  games: "Basketball",
+  others: "Meditation Yoga",
 } satisfies Passion;
 
 const skills = {
-    "SPA Frameworks": ["Svelte", "React", { label: "Solidjs", active: true }],
-    "Programming Languages": ["Javascript", { label: "Typescript", active: true }],
-    "CSS Framework": [{ label: "Tailwindcss", active: true }],
-    Others: ["Astro", "Nuxt", { label: "Nextjs", active: true }],
+  "SPA Frameworks": ["Svelte", "React", { label: "Solidjs", active: true }],
+  "Programming Languages": [
+    "Javascript",
+    { label: "Typescript", active: true },
+  ],
+  "CSS Framework": [{ label: "Tailwindcss", active: true }],
+  Others: ["Astro", "Nuxt", { label: "Nextjs", active: true }],
 } satisfies Skills;
 
 const contacts = {
-    Email: {
-        label: "peadevp@gmail.com",
-        value: "mailto:peadevp@gmail.com",
-    },
-    "Phone Number": {
-        label: "+91 8769514159",
-        value: "tel:+918769514159",
-    },
-    "Github Repo": {
-        label: "github.com/q1b",
-        value: "https://github.com/q1b",
-    },
+  Email: {
+    label: "peadevp@gmail.com",
+    value: "mailto:peadevp@gmail.com",
+  },
+  "Phone Number": {
+    label: "+91 8769514159",
+    value: "tel:+918769514159",
+  },
+  "Github Repo": {
+    label: "github.com/q1b",
+    value: "https://github.com/q1b",
+  },
 } satisfies Contacts;
 
 const start = new Date("June 2021");
 const now = new Date();
 
-const diff = now.getFullYear() - start.getFullYear();
+const diffTime = now.getTime() - start.getTime();
+const diff = Math.ceil(diffTime / (24 * 60 * 60 * 1000) / 365);
+
 let label = "";
 
 switch (diff) {
-    case 1:
-        label = "1st";
-        break;
-    case 2:
-        label = "2nd";
-        break;
-    case 3:
-        label = "3rd";
-        break;
-    case 4:
-        label = "4th";
-        break;
-    default:
-        label = "Passed Out";
-        break;
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+    label = ordinal(diff);
+    break;
+  default:
+    label = "Passed Out";
+    break;
 }
 label += " year";
 const education = [
-    {
-        degree: "B.tech A.I & C.S",
-        place: "Sri Sri University",
-        marksHeader: "status",
-        marks: label,
-        marksClass: "text-yellow-500 dark:text-yellow-500",
-    },
-    {
-        degree: "High School",
-        place: "Kendriya Vidyalya",
-        marksHeader: "%",
-        marks: "92.8",
-        marksClass: "text-green-500 dark:text-green-400",
-    },
+  {
+    degree: "B.tech A.I & C.S",
+    place: "Sri Sri University",
+    marksHeader: "status",
+    marks: label,
+    marksClass: "text-yellow-500 dark:text-yellow-500",
+  },
+  {
+    degree: "High School",
+    place: "Kendriya Vidyalya",
+    marksHeader: "%",
+    marks: "92.8",
+    marksClass: "text-green-500 dark:text-green-400",
+  },
 ] satisfies Education;
 
 const work = [
-    {
-        type: "freelance work",
-        title: "Quiz App",
-        items: ["Designed UI", "Used flutter,dart"],
-    },
+  {
+    type: "freelance work",
+    title: "Quiz App",
+    items: ["Designed UI", "Used flutter,dart"],
+  },
 ] satisfies Work;
 
-const works = await getCollection('work')
-const libraries = await getCollection('libraries');
+const works = await getCollection("work");
+const libraries = await getCollection("libraries");
+const projects = await getCollection("projects");
 ---
 
 <Layout title="Resume | CV of Sukhpreet Singh a.k.a q1b, software developer">
-    <main class="flex max-w-3xl flex-col w-full justify-center mt-16 mb-24">
-        <div class="w-full">
-            <div class="flex justify-between items-start">
-                <h2
-                    class="text-xl pl-2 font-robotic font-medium xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-800 dark:text-slate-300 mb-4"
-                >
-                    Resume
-                </h2>
-                <a
-                    href="#"
-                    title="Comming Soon"
-                    aria-disabled="true"
-                    class="relative aria-disabled:hidden -top-2 text-white opacity-30 group gap-x-1 px-1.5 py-1 bg-blue-500 dark:bg-slate-500/20 rounded-lg dark:rounded-xl inline-flex items-center"
-                >
-                    <span class="pt-1 leading-4 font-medium text-white">Download</span>
-                    <span> <DownloadIcon class="w-5 h-5" /></span>
-                </a>
-            </div>
-        </div>
+  <main class="flex max-w-3xl flex-col w-full justify-center mt-16 mb-24">
+    <div class="w-full">
+      <div class="flex justify-between items-start">
+        <h2
+          class="text-xl pl-2 font-robotic font-medium xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-800 dark:text-slate-300 mb-4"
+        >
+          Resume
+        </h2>
+        <a
+          href="#"
+          title="Comming Soon"
+          aria-disabled="true"
+          class="relative aria-disabled:hidden -top-2 text-white opacity-30 group gap-x-1 px-1.5 py-1 bg-blue-500 dark:bg-slate-500/20 rounded-lg dark:rounded-xl inline-flex items-center"
+        >
+          <span class="pt-1 leading-4 font-medium text-white">Download</span>
+          <span> <DownloadIcon class="w-5 h-5" /></span>
+        </a>
+      </div>
+    </div>
 
-        <h1
-            class="text-4xl xs:text-6xl sm:text-7xl xl:text-8xl text-slate-700 dark:text-white mb-4 md:mb-6 xl:mb-8 2xl:mb-10"
-        >
-            Sukhpreet Singh
-        </h1>
-        <p
-            class="w-full text-slate-600 dark:text-slate-400 font-robotic pl-0.5 text-sm xs:text-base sm:text-lg md:text-xl xl:text-2xl 2xl:text-3xl mb-4"
-        >
-            Front-end Developer, UI/Ux designer, Future AI Engineer and a tech enthusiast
-        </p>
-        <div class="w-full flex items-center gap-x-2 justify-center mb-12">
-            <div
-                class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
-            >
-                <div class="w-6 xs:w-12 h-2 xs:h-4 bg-cyan-500 dark:bg-cyan-400 rounded-md"></div>
-                <span class="text-slate-800 font-medium dark:text-slate-200">Preffered</span>
-            </div>
-            <div
-                class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
-            >
-                <div class="w-6 xs:w-12 h-2 xs:h-4 bg-slate-600 dark:bg-slate-300 rounded-md"></div>
-                <span class="text-slate-800 dark:text-slate-200">Familiar</span>
-            </div>
-        </div>
-        <div class="w-full flex justify-center items-center">
-            <div
-                class="grid lg:grid-cols-3 grid-cols-2 max-[468px]:grid-cols-1 sm:w-[420px] min-[484px]:w-[484px] max-[516px]:gap-x-[4rem] gap-x-[6rem] lg:w-max gap-y-8 sm:gap-x-[10rem] lg:gap-x-0 mb-12 max-[320px]:overflow-x-hidden"
-            >
-                <ResumeComp contacts={contacts} passion={passion} education={education} skills={skills} work={work} />
-            </div>
-        </div>
+    <h1
+      class="text-4xl xs:text-6xl sm:text-7xl xl:text-8xl text-slate-700 dark:text-white mb-4 md:mb-6 xl:mb-8 2xl:mb-10"
+    >
+      Sukhpreet Singh
+    </h1>
+    <p
+      class="w-full text-slate-600 dark:text-slate-400 font-robotic pl-0.5 text-sm xs:text-base sm:text-lg md:text-xl xl:text-2xl 2xl:text-3xl mb-4"
+    >
+      Front-end Developer, UI/Ux designer, Future AI Engineer and a tech
+      enthusiast
+    </p>
+    <div class="w-full flex items-center gap-x-2 justify-center mb-12">
+      <div
+        class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
+      >
         <div
-            class="px-2 py-4 xs:px-4 xs:py-6 box-border bg-slate-50 border border-slate-200 dark:border-transparent dark:bg-slate-950/10 backdrop-blur rounded-md"
+          class="w-6 xs:w-12 h-2 xs:h-4 bg-cyan-500 dark:bg-cyan-400 rounded-md"
         >
-            <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Work Experience</h2>
-            <ul class="flex flex-col gap-y-12">
-                {works.map(async (work) => {
-                    const {company,role,employment_type, documents } = work.data;
-                    const startDate = new Date(work.data.startDate)
-                    const endDate = new Date(work.data?.endDate.value)
-                    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                    const startingMonth = month[startDate.getMonth()]
-                    const startingYear = startDate.getFullYear()
-                    const endingMonth = month[endDate.getMonth()]
-                    const endingYear = endDate.getFullYear()
-                    const cls = endingYear === startingYear ? `hidden xs:inline-block` : ''
-                    const { Content:Summary } = await work.render()
-                    return (
-                        <li class="">
-                                <div class="flex items-stretch justify-between mb-8">
-                                <div class="flex flex-col shrink gap-y-2">
-                                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
-                                        <a href={company.site} target="_blank" class="border-b border-b-sky-400"> {company.name}</a>
-                                    </h2>
-                                    <span
-                                        class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal"
-                                        >As a {role} </span>
-                                </div>
-                                <div class="flex flex-col items-end gap-y-2">
-                                    <div
-                                        class="text-xs xs:text-sm sm:text-base flex gap-x-0.5 xs:gap-x-1 font-medium dark:font-normal text-teal-400 items-center"
-                                    >
-                                        <span>{startingMonth} <span class={cls}>{startingYear}</span></span>
-                                        <span>-</span>
-                                        {work.data.endDate.discriminant ? <span class="text-slate-800 dark:text-slate-200 italic">In Progress</span> : <span>{endingMonth} {endingYear}</span>}
-                                    </div>
-                                    <span
-                                        class="text-xs xs:text-sm sm:text-base text-slate-500 font-medium dark:font-normal dark:text-white"
-                                    >{employment_type}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="prose prose-sm xs:prose-base max-w-none dark:prose-invert">
-                                <Summary />
-                            </div>
-                            <div class="flex flex-col">
-                                {documents.map(document => (
-                                    <Link
-                                        href={document.document}
-                                        rel="noreferrer"
-                                        target="_blank"
-                                        class="text-sm sm:text-base"
-                                    >
-                                        {document.label} 
-                                    </Link>
-                                ))}
-                            </div>
-                        </li>
-                    )
-                })}
-            </ul>
-            <!-- <a href="https://www.theseus.fi/bitstream/handle/10024/795367/Cao_Xuan-An.pdf" rel="noreferrer" target="_blank" q:id="bc"> -->
-            <div class="w-full h-1 bg-slate-300 dark:bg-white rounded-full mt-24 mb-16"></div>
-            <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">Libraries</h2>
-            <ul class="flex flex-col gap-y-12">
-                {libraries.map(({ data }) => (
-                    <li class="">
-                        <div class="p-2 flex flex-col gap-y-2">
-                            <h4 class="text-indigo-600 dark:text-white font-medium font-robotic text-xl sm:text-3xl">{data.title}</h4>
-                            <p class="sm:text-xl text-slate-600 dark:text-slate-200">{data.description}</p>
-                            <div class="flex gap-x-4">
-                                <span class="group text-slate-500 dark:text-slate-200 relative flex items-start">
-                                    <a href={data?.website ? data.website : "#"} target="_blank" class="border-b border-b-sky-400 pr-4">{!data?.website ? "-----------" : "Website"}</a>
-                                    <ArrowUpRightIcon class="absolute right-0 w-3.5 h-3.5 translate-y-0.5 translate-x-0.5 group-hover:text-blue-500 dark:group-hover:text-sky-400" />
-                                </span>
-                                {data?.github_link && 
-                                        <a href={data?.github_link} target="_blank" class=""><GithubIcon class="text-slate-600 dark:text-slate-300 hover:text-slate-700 hover:scale-105 active:scale-95 dark:hover:text-slate-200"/></a>
-                                }
-                            </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
         </div>
-    </main>
+        <span class="text-slate-800 font-medium dark:text-slate-200"
+          >Preffered</span
+        >
+      </div>
+      <div
+        class="border border-slate-300 shadow-sm dark:border-slate-700 px-2 py-1 rounded-md inline-flex items-center gap-x-2"
+      >
+        <div
+          class="w-6 xs:w-12 h-2 xs:h-4 bg-slate-600 dark:bg-slate-300 rounded-md"
+        >
+        </div>
+        <span class="text-slate-800 dark:text-slate-200">Familiar</span>
+      </div>
+    </div>
+    <div class="w-full flex justify-center items-center">
+      <div
+        class="grid lg:grid-cols-3 grid-cols-2 max-[468px]:grid-cols-1 sm:w-[420px] min-[484px]:w-[484px] max-[516px]:gap-x-[4rem] gap-x-[6rem] lg:w-max gap-y-8 sm:gap-x-[10rem] lg:gap-x-0 mb-12 max-[320px]:overflow-x-hidden"
+      >
+        <ResumeComp
+          contacts={contacts}
+          passion={passion}
+          education={education}
+          skills={skills}
+          work={work}
+        />
+      </div>
+    </div>
+    <div
+      class="px-2 py-4 xs:px-4 xs:py-6 box-border bg-slate-50 border border-slate-200 dark:border-transparent dark:bg-slate-950/10 backdrop-blur rounded-md"
+    >
+      <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">
+        Work Experience
+      </h2>
+      <ul class="flex flex-col gap-y-12">
+        {
+          works.map(async (work) => {
+            const { company, role, employment_type, documents } = work.data;
+            const startDate = new Date(work.data.startDate);
+            const endDate = new Date(work.data?.endDate.value);
+            const month = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            const startingMonth = month[startDate.getMonth()];
+            const startingYear = startDate.getFullYear();
+            const endingMonth = month[endDate.getMonth()];
+            const endingYear = endDate.getFullYear();
+            const cls =
+              endingYear === startingYear ? `hidden xs:inline-block` : "";
+            const { Content: Summary } = await work.render();
+            return (
+              <li class="">
+                <div class="flex items-stretch justify-between mb-8">
+                  <div class="flex flex-col shrink gap-y-2">
+                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
+                      <a
+                        href={company.site}
+                        target="_blank"
+                        class="border-b border-b-sky-400"
+                      >
+                        {" "}
+                        {company.name}
+                      </a>
+                    </h2>
+                    <span class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal">
+                      As a {role}{" "}
+                    </span>
+                  </div>
+                  <div class="flex flex-col items-end gap-y-2">
+                    <div class="text-xs xs:text-sm sm:text-base flex gap-x-0.5 xs:gap-x-1 font-medium dark:font-normal text-teal-400 items-center">
+                      <span>
+                        {startingMonth} <span class={cls}>{startingYear}</span>
+                      </span>
+                      <span>-</span>
+                      {work.data.endDate.discriminant ? (
+                        <span class="text-slate-800 dark:text-slate-200 italic">
+                          In Progress
+                        </span>
+                      ) : (
+                        <span>
+                          {endingMonth} {endingYear}
+                        </span>
+                      )}
+                    </div>
+                    <span class="text-xs xs:text-sm sm:text-base text-slate-500 font-medium dark:font-normal dark:text-white">
+                      {employment_type}
+                    </span>
+                  </div>
+                </div>
+                <div class="prose prose-sm xs:prose-base max-w-none dark:prose-invert">
+                  <Summary />
+                </div>
+                <div class="flex flex-col">
+                  {documents.map((document) => (
+                    <Link
+                      href={document.document}
+                      rel="noreferrer"
+                      target="_blank"
+                      class="text-sm sm:text-base"
+                    >
+                      {document.label}
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div
+        class="w-full h-1 bg-slate-300 dark:bg-white rounded-full mt-24 mb-16"
+      >
+      </div>
+      <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">
+        Projects
+      </h2>
+      <ul class="flex flex-col gap-y-12">
+        {
+          projects.map(async (project) => {
+            // const { Content:Summary } = await work.render()
+            // size |  |
+            const { title, description, draft, github_link, website, tags } =
+              project.data;
+            const { Content: Summary } = await project.render();
+            if (draft) return;
+            return (
+              <li class="">
+                <div class="flex items-stretch justify-between mb-8">
+                  <div class="flex flex-col shrink gap-y-2">
+                    <h2 class="text-lg sm:text-3xl text-slate-400 dark:text-slate-200 font-semibold">
+                      <a
+                        href={github_link}
+                        target="_blank"
+                        class="border-b border-b-sky-400"
+                      >
+                        {title}
+                      </a>
+                    </h2>
+                    <div class="flex flex-row gap-x-2">
+                      {tags.map((tag) => (
+                        <span class="text-xs xs:text-sm sm:text-base text-indigo-400 font-robotic font-medium dark:font-normal">
+                          #{tag.id}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="flex flex-row items-center gap-x-2">
+                    {website && (
+                      <a href={website} target="_blank">
+                        <LinkIcon class="text-white w-6 h-6" />
+                      </a>
+                    )}
+                    <a href={github_link} target="_blank">
+                      <GithubIcon class="text-slate-600 dark:text-slate-300 hover:text-slate-700 hover:scale-105 active:scale-95 dark:hover:text-slate-200" />
+                    </a>
+                  </div>
+                </div>
+                <div class="prose prose-sm xs:prose-base max-w-none dark:prose-invert">
+                  <p>{description}</p>
+                  <Summary />
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <!-- <a href="https://www.theseus.fi/bitstream/handle/10024/795367/Cao_Xuan-An.pdf" rel="noreferrer" target="_blank" q:id="bc"> -->
+      <div
+        class="w-full h-1 bg-slate-300 dark:bg-white rounded-full mt-24 mb-16"
+      >
+      </div>
+      <h2 class="text-2xl sm:text-4xl text-slate-500 dark:text-white mb-6">
+        Libraries
+      </h2>
+      <ul class="flex flex-col gap-y-12">
+        {
+          libraries.map(({ data }) => (
+            <li class="">
+              <div class="p-2 flex flex-col gap-y-2">
+                <h4 class="text-indigo-600 dark:text-white font-medium font-robotic text-xl sm:text-3xl">
+                  {data.title}
+                </h4>
+                <p class="sm:text-xl text-slate-600 dark:text-slate-200">
+                  {data.description}
+                </p>
+                <div class="flex gap-x-4">
+                  <span class="group text-slate-500 dark:text-slate-200 relative flex items-start">
+                    <a
+                      href={data?.website ? data.website : "#"}
+                      target="_blank"
+                      class="border-b border-b-sky-400 pr-4"
+                    >
+                      {!data?.website ? "-----------" : "Website"}
+                    </a>
+                    <ArrowUpRightIcon class="absolute right-0 w-3.5 h-3.5 translate-y-0.5 translate-x-0.5 group-hover:text-blue-500 dark:group-hover:text-sky-400" />
+                  </span>
+                  {data?.github_link && (
+                    <a href={data?.github_link} target="_blank" class="">
+                      <GithubIcon class="text-slate-600 dark:text-slate-300 hover:text-slate-700 hover:scale-105 active:scale-95 dark:hover:text-slate-200" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </main>
 </Layout>

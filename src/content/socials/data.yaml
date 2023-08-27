@@ -1,13 +1,13 @@
 data:
-  - platform: Instagram
-    label: Checkout instgram page
-    link: https://instagram.com/vishnuans?igshid=MzNlNGNkZWQ4Mg==
-    me: https://www.instagram.com/vishnuans/
-  - platform: Twitter
-    label: Follow me on twitter
-    link: https://twitter.com/uniuwe
-    me: https://twitter.com/uniuwe
-  - platform: Github
-    label: Go to GitHub repo
-    link: github.com/q1b/q1b
-    me: github.com/q1b
+    - platform: Instagram
+      label: Checkout instgram page
+      link: https://instagram.com/vishnuans?igshid=MzNlNGNkZWQ4Mg==
+      me: https://www.instagram.com/vishnuans/
+    - platform: Twitter
+      label: Follow me on twitter
+      link: https://twitter.com/uniuwe
+      me: https://twitter.com/uniuwe
+    - platform: Github
+      label: Go to GitHub repo
+      link: github.com/q1b/q1b
+      me: github.com/q1b

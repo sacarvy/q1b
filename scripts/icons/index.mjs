@@ -1,6 +1,6 @@
-import { writeFile } from 'node:fs/promises';
-import { Buffer } from 'node:buffer';
-import { prepareAstroComponent } from "./template.mjs"
+import { writeFile } from "node:fs/promises";
+import { Buffer } from "node:buffer";
+import { prepareAstroComponent } from "./template.mjs";
 
 const RequiredIcons = [
 	{
@@ -11,17 +11,17 @@ const RequiredIcons = [
 	{
 		outline: "heroicons:arrow-left",
 		solid: "heroicons:arrow-left-solid",
-		name: "ArrowLeft"
+		name: "ArrowLeft",
 	},
 	{
 		outline: "fluent:arrow-up-right-24-regular",
 		solid: "fluent:arrow-up-right-24-filled",
-		name: "ArrowUpRight"
+		name: "ArrowUpRight",
 	},
 	{
 		outline: "heroicons:arrow-right",
 		solid: "heroicons:arrow-right-solid",
-		name: "ArrowRight"
+		name: "ArrowRight",
 	},
 	{
 		outline: "fluent:pen-48-regular",
@@ -104,15 +104,15 @@ const RequiredIcons = [
 	},
 	{
 		path: "radix-icons:github-logo",
-		name: "Github"
-	}
+		name: "Github",
+	},
 ];
 
-const getName = (name) => '../../src/ui/icons/' + name + 'Icon' + '.astro'
+const getName = (name) => "../../src/ui/icons/" + name + "Icon" + ".astro";
 
 RequiredIcons.forEach(async (detail) => {
 	const component = prepareAstroComponent(detail);
-	const pathname = new URL(getName(detail.name), import.meta.url)
+	const pathname = new URL(getName(detail.name), import.meta.url);
 
 	try {
 		const data = new Uint8Array(Buffer.from(component));

@@ -1,21 +1,19 @@
 {
-  "extends": "astro/tsconfigs/strictest",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+    "extends": "astro/tsconfigs/strictest",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["./src/*"]
+        },
+        "jsx": "preserve"
     },
-    "jsx": "preserve"
-  },
-  "include": [
-    "src",
-    "astro.config.mjs",
-    ".eslintrc.cjs",
-    "**/*.js",
-    "**/*.cjs",
-    "**/*.mjs"
-  ],
-  "exclude": ["node_modules", "dist", ".netlify", "public"]
+    "include": [
+        "src",
+        "astro.config.mjs",
+        ".eslintrc.cjs",
+        "**/*.js",
+        "**/*.cjs",
+        "**/*.mjs"
+    ],
+    "exclude": ["node_modules", "dist", ".netlify", "public"]
 }

@@ -1,14 +1,14 @@
-import { buildMaterial } from "./buildFile.mjs"
-import {template } from "./template.mjs"
+import { buildMaterial } from "./buildFile.mjs";
+import { template } from "./template.mjs";
 
-	// {
-	// 	"Arrow",
-	// 	variants: [
-	// 		{
-	// 			name: 'Left',
-	// 		}
-	// 	]
-	// },
+// {
+// 	"Arrow",
+// 	variants: [
+// 		{
+// 			name: 'Left',
+// 		}
+// 	]
+// },
 
 const RequiredIcons = [
 	{
@@ -19,12 +19,12 @@ const RequiredIcons = [
 	{
 		outline: "heroicons:arrow-left",
 		solid: "heroicons:arrow-left-solid",
-		name: "ArrowLeft"
+		name: "ArrowLeft",
 	},
 	{
 		outline: "heroicons:arrow-right",
 		solid: "heroicons:arrow-right-solid",
-		name: "ArrowRight"
+		name: "ArrowRight",
 	},
 	{
 		outline: "fluent:pen-48-regular",
@@ -123,7 +123,7 @@ function cn(...inputs: ClassValue[]) {
 `;
 
 RequiredIcons.forEach((detail) => (preFile += template(detail)));
-const getName = () => '../../src/ui/' + 'icons' + '.tsx'
-const pathname = (new URL(getName(),import.meta.url)).pathname;
+const getName = () => "../../src/ui/" + "icons" + ".tsx";
+const pathname = new URL(getName(), import.meta.url).pathname;
 
 buildMaterial(pathname, preFile);
